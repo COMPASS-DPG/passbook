@@ -19,7 +19,7 @@ const NavBarLink = ({ currentPath, routeName }: navLinkType) => {
             }`}
     >
       <Link
-        href='/role'
+        href={currentPath}
         className={`text-lg    
             ${pathname === currentPath ? 'text-[#272728]' : 'text-[#65758C]'} `}
       >
