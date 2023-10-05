@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
@@ -8,23 +9,28 @@ import { outfit, poppins } from '@/components/FontFamily';
 
 import { roles } from '@/mockData/roleMock';
 
-type RoleDataType = {
-  id: string;
-  role: string;
-  status: string;
-};
+import { CompetencyType, RoleDataType } from '@/types/type';
 
-const page = ({ params }: { params: { id: string } }) => {
+const RoleDetails = ({ params }: { params: { id: string } }) => {
+  const router = useRouter();
   const data = roles?.find((item) => item.id === params.id) as
     | RoleDataType
     | undefined;
 
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className={`${outfit.className} w-full`}>
-      <div className='flex items-center gap-4 px-[22px] py-1.5'>
-        <div className='flex h-11 w-11 items-center justify-center rounded-md border-2 border-solid border-gray-200'>
+      <div className='flex items-center px-[22px] py-1.5'>
+        <button
+          className='mr-[15px] flex h-11 w-11 cursor-pointer 
+        items-center justify-center rounded-md border-2 border-solid border-gray-200 hover:bg-gray-100'
+          onClick={handleBack}
+        >
           <MdOutlineKeyboardArrowLeft size={28} />
-        </div>
+        </button>
         <div className='text-xl font-semibold'>Roles</div>
       </div>
       <div className='p-[22px]'>
@@ -40,12 +46,15 @@ const page = ({ params }: { params: { id: string } }) => {
           <p
             className={`pb-2.5 ${poppins.className} text-lg font-semibold lowercase `}
           >
-            Provide Antenatal and Antepartum Services Through Outreach and at
-            facility
+            {data?.role}
           </p>
-          <p className='pb-2.5 text-sm font-normal'>
-            Follow up and ensure early registration of pregnant women
-          </p>
+          {data?.roleDescription.map((des, i) => {
+            return (
+              <p key={i} className='pb-2.5 text-sm font-normal'>
+                {des}
+              </p>
+            );
+          })}
         </div>
         <div>
           <div className='flex items-center gap-2.5 text-[#272728]'>
@@ -57,10 +66,13 @@ const page = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <div className='my-5'>
-            <CompetencyAccordion />
-            <CompetencyAccordion />
-            <CompetencyAccordion />
-            <CompetencyAccordion />
+            {data?.competencies.map((competency: CompetencyType, i) => {
+              return (
+                <div key={i}>
+                  <CompetencyAccordion data={competency} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -68,4 +80,4 @@ const page = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default RoleDetails;

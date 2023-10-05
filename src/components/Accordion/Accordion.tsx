@@ -31,7 +31,7 @@ const CustomAccordion = ({
         <div
           className={`${
             isOpen ? 'rotate-180' : 'rotate-0'
-          } duration-10000 transition ease-in-out `}
+          } transition duration-300  `}
         >
           <RiArrowDownSLine size={24} />
         </div>
@@ -39,7 +39,7 @@ const CustomAccordion = ({
       <div
         className={`p-2.5 ${
           isOpen ? 'block' : 'hidden'
-        } transition-max-height duration-10000 overflow-hidden ease-in-out`}
+        } overflow-hidden transition duration-300 `}
       >
         {children}
       </div>
