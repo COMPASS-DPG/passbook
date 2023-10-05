@@ -1,4 +1,6 @@
+'use client';
 import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
 import * as React from 'react';
 
 import Navbar from '@/components/competency/Navbar';
@@ -8,12 +10,20 @@ export const metadata: Metadata = {
   title: 'Role',
 };
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
   return (
     <>
-      <Navbar />
-      <SubNavbar />
-      {children}
+      {pathname.includes('/role/') ? (
+        <>{children}</>
+      ) : (
+        <>
+          <Navbar />
+          <SubNavbar />
+          {children}
+        </>
+      )}
     </>
   );
 }

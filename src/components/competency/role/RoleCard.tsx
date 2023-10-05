@@ -3,15 +3,13 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 
 import { outfit, poppins } from '@/components/FontFamily';
 
-export type RoleDataType = {
-  data: {
-    id: string;
-    role: string;
-    status: string;
-  };
+import { RoleDataType } from '@/types/type';
+
+export type ChildProps = {
+  data: RoleDataType;
 };
 
-const RoleCard = ({ data }: RoleDataType) => {
+const RoleCard = ({ data }: ChildProps) => {
   return (
     <div
       className='m-5 flex cursor-pointer items-center justify-between rounded-md border 

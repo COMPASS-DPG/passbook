@@ -1,15 +1,30 @@
+import Image from 'next/image';
 import React from 'react';
-import { RiVerifiedBadgeFill } from 'react-icons/ri';
 
 import CustomAccordion from '@/components/Accordion/Accordion';
 import { poppins } from '@/components/FontFamily';
-const CompetencyAccordion = () => {
+
+import levelIcon from '../../../../public/images/levelIcon.png';
+
+import { CompetencyType } from '@/types/type';
+
+interface ChildProps {
+  data: CompetencyType;
+}
+
+const CompetencyAccordion = ({ data }: ChildProps) => {
   return (
-    <CustomAccordion title='dfsdfsf'>
+    <CustomAccordion title={data?.competency}>
       <div>
         <div className='flex items-center gap-2.5 py-5 text-[#272728]'>
           <div>
-            <RiVerifiedBadgeFill size={18} />
+            <Image
+              priority
+              width={18}
+              height={18}
+              src={levelIcon}
+              alt='level icon'
+            />
           </div>
           <div className={`text-sm ${poppins.className} font-medium`}>
             Levels
@@ -17,19 +32,11 @@ const CompetencyAccordion = () => {
         </div>
         <div>
           <ul className='list-disc pl-4 text-sm font-normal text-[#272728]'>
-            <li className='pb-4'>
-              this is competency this is competency this is competency
-            </li>
-            <li className='pb-4'>this is competency</li>
-            <li className='pb-4'>this is competency</li>
-            <li className='pb-4'>this is competency this is competency</li>
-            <li className='pb-4'>this is competency</li>
-            <li className='pb-4'>
-              this is competency this is competency this is competency
-            </li>
-            <li className='pb-4'>this is competency</li>
-            <li className='pb-4'>this is competency</li>
-            <li className='pb-4'>this is competency</li>
+            {data.levels.map((level, i) => (
+              <li key={i} className='pb-4'>
+                {level}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
