@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
 
+import WpcasAccordion from '@/components/competency/wpcas/WpcasAccordion';
+
 import { outfit } from '../../components/FontFamily';
 import survey from '../../../public/svg/survey.png';
 
 const Wpcas = () => {
   return (
-    <div className='m-3 h-screen'>
+    <div className='m-3 h-max'>
       <div className='flex h-28 space-x-4 p-2'>
         <div className='left w-3/5 rounded-lg border-orange-300 bg-amber-100 p-2'>
           <div>
@@ -44,6 +46,12 @@ const Wpcas = () => {
           </h6>
         </div>
       </div>
+      <WpcasAccordion />
+      <WpcasAccordion />
+      <WpcasAccordion />
+      <WpcasAccordion />
+      <WpcasAccordion />
+      <WpcasAccordion />
     </div>
   );
 };

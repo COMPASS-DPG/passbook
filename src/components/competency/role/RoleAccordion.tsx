@@ -12,7 +12,7 @@ interface ChildProps {
   data: CompetencyType;
 }
 
-const CompetencyAccordion = ({ data }: ChildProps) => {
+const RoleAccordion = ({ data }: ChildProps) => {
   return (
     <CustomAccordion title={data?.competency}>
       <div>
@@ -44,4 +44,4 @@ const CompetencyAccordion = ({ data }: ChildProps) => {
   );
 };
 
-export default CompetencyAccordion;
+export default RoleAccordion;

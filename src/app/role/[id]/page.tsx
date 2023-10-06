@@ -4,7 +4,7 @@ import React from 'react';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 
-import CompetencyAccordion from '@/components/competency/role/CompetencyAccordion';
+import RoleAccordion from '@/components/competency/role/RoleAccordion';
 import { outfit, poppins } from '@/components/FontFamily';
 
 import { roles } from '@/mockData/roleMock';
@@ -69,7 +69,7 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
             {data?.competencies.map((competency: CompetencyType, i) => {
               return (
                 <div key={i}>
-                  <CompetencyAccordion data={competency} />
+                  <RoleAccordion data={competency} />
                 </div>
               );
             })}
