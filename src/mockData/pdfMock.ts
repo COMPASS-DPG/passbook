@@ -130,6 +130,7 @@ export const pdfMonk = {
           level: 'Conducts initial assessment',
           assessmentType: 'PIAA',
           date: '18/12/2023',
+          percentage: '68%',
         },
         {
           level: 'Identifies HRP and Estimates gestational age',
@@ -165,10 +166,23 @@ export const pdfMonk = {
           level: 'Conducts initial assessment',
           assessmentType: 'PIAA',
           date: '18/12/2023',
+          percentage: '68%',
         },
         {
           level: 'Identifies HRP and Estimates gestational age',
           assessmentType: 'Self',
+          date: '18/12/2023',
+          percentage: '68%',
+        },
+        {
+          level: 'Administers TD/booster as per lorem ipsum',
+          assessmentType: 'Not done',
+          date: '18/12/2023',
+          percentage: '68%',
+        },
+        {
+          level: 'Administers TD/booster as per lorem ipsum',
+          assessmentType: 'Not done',
           date: '18/12/2023',
           percentage: '68%',
         },

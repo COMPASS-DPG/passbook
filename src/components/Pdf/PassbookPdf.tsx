@@ -45,7 +45,7 @@ const PassbookPdf = () => {
   return (
     <PDFViewer style={styles.pdfViewer}>
       <Document>
-        <Page size='A4' style={styles.pageCss}>
+        <Page size='A4' style={styles.pageCss} wrap>
           <Text style={styles.compassIcon}>Compass</Text>
           <Text style={styles.headingText}>Competency Passbook</Text>
           <Text style={styles.headingBorder}></Text>
@@ -58,7 +58,7 @@ const PassbookPdf = () => {
               </View>
               <View style={styles.dateContainer}>
                 <View style={styles.rightAlignText}>
-                  <Text>Last Update on:</Text>
+                  <Text>PDF Generation Date:</Text>
                 </View>
                 <View style={styles.rightAlignText}>
                   <Text>{pdfMonk.date}</Text>
@@ -88,6 +88,13 @@ const PassbookPdf = () => {
           {pdfData?.map((competency, i) => {
             return <TableComponent key={i} data={competency} index={i} />;
           })}
+          <Text
+            style={styles.pageNumber}
+            render={({ pageNumber, totalPages }) =>
+              `${pageNumber} / ${totalPages}`
+            }
+            fixed
+          />
         </Page>
       </Document>
     </PDFViewer>

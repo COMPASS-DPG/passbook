@@ -1,7 +1,35 @@
-import { StyleSheet } from '@react-pdf/renderer';
+import { Font, StyleSheet } from '@react-pdf/renderer';
+
+Font.register({
+  family: 'Oxanium',
+  src: 'http://fonts.gstatic.com/s/oxanium/v19/RrQPboN_4yJ0JmiMUW7sIGjd1IA9G82XeXiMBXQ7d67x.ttf',
+});
+
+Font.register({
+  family: 'Outfit',
+  fonts: [
+    {
+      src: 'http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC1C4G-EiAou6Y.ttf',
+      fontWeight: 400,
+    },
+    {
+      src: 'http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4QK1C4G-EiAou6Y.ttf',
+      fontWeight: 500,
+    },
+    {
+      src: 'http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4e6yC4G-EiAou6Y.ttf',
+      fontWeight: 600,
+    },
+    {
+      src: 'http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4deyC4G-EiAou6Y.ttf',
+      fontWeight: 700,
+    },
+  ],
+});
 
 export const styles = StyleSheet.create({
   competency: {
+    fontFamily: 'Outfit',
     color: '#272728',
     fontSize: '10px',
     fontWeight: 'semibold',
@@ -15,8 +43,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   tableHeaderText: {
+    fontFamily: 'Outfit',
     fontSize: '9px',
-    fontWeight: 'bold',
+    fontWeight: 'semibold',
   },
   levelChart: {
     flexDirection: 'row',
@@ -24,68 +53,88 @@ export const styles = StyleSheet.create({
     marginTop: '5px',
   },
   logText: {
-    fontSize: '9px',
+    fontFamily: 'Outfit',
+    fontSize: '10px',
     color: '#272728',
-    fontWeight: 600,
+    fontWeight: 'semibold',
     marginTop: '12px',
   },
   logsList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: '10px 0px',
+    margin: '5px 0px',
+    color: '#272728',
+    borderBottom: '1px solid #65758C',
+  },
+  logsListWithGrayColor: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: '5px 0px',
+    borderBottom: '1px solid #65758C',
+    color: 'gray',
   },
   listTextNo: {
     fontSize: '9px',
     fontWeight: 400,
-    color: '#272728',
   },
   listText: {
     fontSize: '9px',
     fontWeight: 400,
-    color: '#272728',
     width: '85%',
     textAlign: 'justify',
   },
 
   listTextFlex: {
+    fontFamily: 'Outfit',
+    fontWeight: 'normal',
     flexDirection: 'row',
     gap: '5px',
   },
   logsDate: {
+    fontFamily: 'Outfit',
     color: '#65758C',
     fontSize: '9px',
-    fontWeight: 400,
-    marginTop: '5px',
+    fontWeight: 'normal',
+    marginVertical: '5px',
+  },
+  logsDateGrayColor: {
+    fontFamily: 'Outfit',
+    color: 'gray',
+    fontSize: '9px',
+    fontWeight: 'normal',
+    marginVertical: '5px',
   },
   listPercentageContainer: {
     textAlign: 'center',
     width: '40px',
   },
   listPercentage: {
+    fontFamily: 'Outfit',
     color: 'black',
     fontSize: '9px',
-    fontWeight: 500,
+    fontWeight: 'medium',
   },
   compassIcon: {
+    fontFamily: 'Oxanium',
     textAlign: 'center',
-    fontSize: '19px',
-    paddingTop: '13px',
+    fontSize: '25px',
     color: '#65758C',
-    fontWeight: 600,
+    fontWeight: 'semibold',
   },
   pdfViewer: {
     width: '100%',
     height: '1000px',
   },
   pageCss: {
-    padding: '12px 16px',
+    padding: '18px 16px',
   },
   headingText: {
+    fontFamily: 'Outfit',
     textAlign: 'center',
-    fontSize: '14px',
+    fontSize: '20px',
     marginBottom: '9px',
     color: '#272728',
-    fontWeight: 600,
+    fontWeight: 'semibold',
   },
   headingBorder: {
     borderBottom: '2px solid #385B8B',
@@ -100,24 +149,26 @@ export const styles = StyleSheet.create({
     marginBottom: '12px',
   },
   overAllCompassText: {
-    fontSize: '9px',
-    fontWeight: 500,
+    fontFamily: 'Outfit',
+    fontSize: '11px',
+    fontWeight: 'medium',
     color: '#272728',
-    marginBottom: '8px',
   },
   dataAndPercentageContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   percentageText: {
+    fontFamily: 'Outfit',
     color: '#385B8B',
-    fontSize: '15px',
-    fontWeight: 700,
+    fontSize: '18px',
+    fontWeight: 'bold',
   },
   aggregateText: {
+    fontFamily: 'Outfit',
     color: '#385B8B',
     fontSize: '9px',
-    fontWeight: 400,
+    fontWeight: 'normal',
     backgroundColor: '#BEE8FF',
     padding: '0px 5px',
     borderRadius: '5px',
@@ -126,6 +177,8 @@ export const styles = StyleSheet.create({
   },
   percentageContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: '10px',
   },
   dateContainer: {
@@ -135,14 +188,17 @@ export const styles = StyleSheet.create({
     textAlign: 'right',
   },
   rightAlignText: {
+    fontFamily: 'Outfit',
+    fontWeight: 'normal',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     padding: '3px 0px',
   },
   competencyHeading: {
+    fontFamily: 'Outfit',
     color: '#272728',
-    fontSize: '13px',
-    fontWeight: 600,
+    fontSize: '15px',
+    fontWeight: 'semibold',
     marginBottom: '10px',
   },
   assessmentTypes: {
@@ -151,11 +207,12 @@ export const styles = StyleSheet.create({
     marginBottom: '15px',
   },
   svgContainer: {
+    fontFamily: 'Outfit',
+    fontWeight: 'normal',
     flexDirection: 'row',
     gap: '5px',
     color: '#65758C',
     fontSize: '9px',
-    fontWeight: 400,
   },
   level1: {
     width: '53px',
@@ -200,5 +257,25 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     height: '16px',
     border: '1px solid #E1E1E1',
+  },
+  pageNumber: {
+    fontFamily: 'Outfit',
+    fontWeight: 'medium',
+    fontSize: '9px',
+    color: 'gray',
+    textAlign: 'center',
+    position: 'absolute',
+    bottom: 10,
+    left: 0,
+    right: 0,
+  },
+  surveyDate: {
+    fontFamily: 'Outfit',
+    fontWeight: 'normal',
+    fontSize: '9px',
+  },
+  surveyDateContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

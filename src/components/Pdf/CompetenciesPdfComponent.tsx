@@ -11,7 +11,7 @@ type PropType = {
 
 const TableComponent = ({ data, index }: PropType) => {
   return (
-    <>
+    <View wrap={false}>
       <Text style={styles.competency}>
         {index + 1}. {data?.competency}
       </Text>
@@ -39,24 +39,44 @@ const TableComponent = ({ data, index }: PropType) => {
         <Text style={styles.logText}>Logs</Text>
         {data.levels?.map((data: levelType, i: number) => {
           return (
-            <View key={i} style={styles.logsList}>
+            <View
+              key={i}
+              style={
+                data.assessmentType == 'Not done'
+                  ? styles.logsListWithGrayColor
+                  : styles.logsList
+              }
+            >
               <View style={styles.listTextFlex}>
                 <View>
                   <Text style={styles.listTextNo}>L{i + 1}.</Text>
                 </View>
                 <View>
                   <Text style={styles.listText}>{data.level}</Text>
-                  <Text style={styles.logsDate}>{data.date}</Text>
+                  <View style={styles.surveyDateContainer}>
+                    <Text style={styles.surveyDate}>Survey Date: </Text>
+                    <Text
+                      style={
+                        data?.assessmentType == 'Not done'
+                          ? styles.logsDateGrayColor
+                          : styles.logsDate
+                      }
+                    >
+                      {data?.date}
+                    </Text>
+                  </View>
                 </View>
               </View>
               <View style={styles.listPercentageContainer}>
-                <Text style={styles.listPercentage}>{data.percentage}</Text>
+                <Text style={styles.listPercentage} break>
+                  {data.assessmentType == 'Not done' ? '' : data?.percentage}
+                </Text>
               </View>
             </View>
           );
         })}
       </View>
-    </>
+    </View>
   );
 };
 
