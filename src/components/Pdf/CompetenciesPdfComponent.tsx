@@ -11,7 +11,7 @@ type PropType = {
 
 const TableComponent = ({ data, index }: PropType) => {
   return (
-    <View wrap={false}>
+    <View wrap={false} style={styles.mainCompetencyContainer}>
       <Text style={styles.competency}>
         {index + 1}. {data?.competency}
       </Text>
@@ -54,21 +54,25 @@ const TableComponent = ({ data, index }: PropType) => {
                 <View>
                   <Text style={styles.listText}>{data.level}</Text>
                   <View style={styles.surveyDateContainer}>
-                    <Text style={styles.surveyDate}>Survey Date: </Text>
-                    <Text
-                      style={
-                        data?.assessmentType == 'Not done'
-                          ? styles.logsDateGrayColor
-                          : styles.logsDate
-                      }
-                    >
-                      {data?.date}
-                    </Text>
+                    {data.assessmentType !== 'Not done' && (
+                      <>
+                        <Text style={styles.surveyDate}>Survey Date: </Text>
+                        <Text
+                          style={
+                            data?.assessmentType == 'Not done'
+                              ? styles.logsDateGrayColor
+                              : styles.logsDate
+                          }
+                        >
+                          {data?.date}
+                        </Text>
+                      </>
+                    )}
                   </View>
                 </View>
               </View>
               <View style={styles.listPercentageContainer}>
-                <Text style={styles.listPercentage} break>
+                <Text style={styles.listPercentage}>
                   {data.assessmentType == 'Not done' ? '' : data?.percentage}
                 </Text>
               </View>

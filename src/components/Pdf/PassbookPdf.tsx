@@ -16,25 +16,25 @@ import { pdfMonk } from '@/mockData/pdfMock';
 import { CompetencyPDFType } from '@/types/type';
 
 const PIAASvg = () => (
-  <Svg width='10' height='10' viewBox='0 0 10 10'>
+  <Svg width='10' height='10' viewBox='0 -1 10 10'>
     <Circle cx='4.53786' cy='3.79421' r='3.78151' fill='#7CE780' />
   </Svg>
 );
 
 const CBPSvg = () => (
-  <Svg width='10' height='10' viewBox='0 0 10 10'>
+  <Svg width='10' height='10' viewBox='0 -1 10 10'>
     <Circle cx='4.53786' cy='3.79421' r='3.78151' fill='#F8DA72' />
   </Svg>
 );
 
 const SelfSvg = () => (
-  <Svg width='10' height='10' viewBox='0 0 10 10'>
+  <Svg width='10' height='10' viewBox='0 -1 10 10'>
     <Circle cx='4.53786' cy='3.79421' r='3.78151' fill='#FF9F46' />
   </Svg>
 );
 
 const NotDoneSvg = () => (
-  <Svg width='10' height='10' viewBox='0 0 10 10'>
+  <Svg width='10' height='10' viewBox='0 -1 10 10'>
     <Circle cx='4.53786' cy='3.79421' r='3.78151' fill='#D8D8D8' />
   </Svg>
 );
@@ -66,7 +66,6 @@ const PassbookPdf = () => {
               </View>
             </View>
           </View>
-          <Text style={styles.competencyHeading}>Competencies</Text>
           <View style={styles.assessmentTypes}>
             <View style={styles.svgContainer}>
               <PIAASvg />
@@ -85,6 +84,7 @@ const PassbookPdf = () => {
               <Text>Not done</Text>
             </View>
           </View>
+          <Text style={styles.competencyHeading}>Competencies</Text>
           {pdfData?.map((competency, i) => {
             return <TableComponent key={i} data={competency} index={i} />;
           })}
