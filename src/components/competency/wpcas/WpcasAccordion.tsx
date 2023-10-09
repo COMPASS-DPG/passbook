@@ -40,7 +40,7 @@ const WpcasAccordion = () => {
                   <div
                     className={`text-sm ${outfit.className} text-right font-semibold`}
                   >
-                    WPCAS %
+                    WPCAS%
                   </div>
                 </th>
               </tr>
@@ -66,16 +66,18 @@ const WpcasAccordion = () => {
                 <td className='px-2 text-right font-semibold'>50%</td>
               </tr>
               <tr>
-                <td className={`py-3 ${outfit.className} text-sm`}>
+                <td
+                  className={`py-3 ${outfit.className} text-sm text-[#65758C]`}
+                >
                   Identifies pregnancy using Nischaya Kit
                 </td>
-                <td className='px-2 text-right font-semibold'>32%</td>
               </tr>
               <tr>
-                <td className={`py-3 ${outfit.className} text-sm`}>
+                <td
+                  className={`py-3 ${outfit.className} text-sm text-[#65758C]`}
+                >
                   Administers TD/booster as per lorem ipsum
                 </td>
-                <td className='px-2 text-right font-semibold'>25%</td>
               </tr>
             </tbody>
           </table>

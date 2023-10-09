@@ -49,7 +49,7 @@ const CompetencyAccordion = () => {
             </div>
           </li>
           <li className={`pt-2 ${outfit.className} text-sm`}>
-            <div className={`pt-2 ${outfit.className} text-sm`}>
+            <div className={`pt-2 ${outfit.className} text-sm text-[#65758C]`}>
               L5. Administers TD/booster as per lorem ipsum
             </div>
             <div className={`text-[#65758C] ${outfit.className} text-sm`}>
@@ -57,7 +57,7 @@ const CompetencyAccordion = () => {
             </div>
           </li>
           <li className={`pt-2 ${outfit.className} text-sm`}>
-            <div className={`pt-2 ${outfit.className} text-sm`}>
+            <div className={`pt-2 ${outfit.className} text-sm text-[#65758C]`}>
               {' '}
               L6. Understands health of males and females and final assessment
               protocols{' '}
