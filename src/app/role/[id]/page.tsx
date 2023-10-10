@@ -5,6 +5,7 @@ import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 
 import RoleAccordion from '@/components/competency/role/RoleAccordion';
+import NoCompetencyError from '@/components/errorScreen/NoCompetencyError';
 import { outfit, poppins } from '@/components/FontFamily';
 
 import { roles } from '@/mockData/roleMock';
@@ -26,7 +27,8 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
       <div className='flex items-center px-[22px] py-1.5'>
         <button
           className='mr-[15px] flex h-11 w-11 cursor-pointer 
-        items-center justify-center rounded-md border-2 border-solid border-gray-200 hover:bg-gray-100'
+        items-center justify-center rounded-md border-2 
+        border-solid border-gray-200 hover:bg-gray-100'
           onClick={handleBack}
         >
           <MdOutlineKeyboardArrowLeft size={28} />
@@ -66,13 +68,17 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <div className='my-5'>
-            {data?.competencies.map((competency: CompetencyType, i) => {
-              return (
-                <div key={i}>
-                  <RoleAccordion data={competency} />
-                </div>
-              );
-            })}
+            {data?.competencies && data.competencies.length !== 0 ? (
+              data?.competencies?.map((competency: CompetencyType, i) => {
+                return (
+                  <div key={i}>
+                    <RoleAccordion data={competency} />
+                  </div>
+                );
+              })
+            ) : (
+              <NoCompetencyError />
+            )}
           </div>
         </div>
       </div>

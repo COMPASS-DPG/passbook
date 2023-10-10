@@ -9,68 +9,6 @@ export const roles = [
       'Track and ensure PW and HRP are referred to health facilities',
       'Ensure birth planning for all PW',
     ],
-    competencies: [
-      {
-        competency: 'Pregnancy Identification',
-        levels: [
-          'Understands health of males and females and initial assessment protocols',
-          'Identifies pregnancy using Nischaya Kit',
-          'Conducts initial assessment',
-          'Identifies HRP and Estimates gestational age',
-          'Administers TD/booster as per lorem ipsum',
-        ],
-      },
-      {
-        competency: 'Pregnancy Identification',
-        levels: [
-          'Understands health of males and females and initial assessment protocols',
-          'Identifies pregnancy using Nischaya Kit',
-          'Conducts initial assessment',
-          'Identifies HRP and Estimates gestational age',
-          'Administers TD/booster as per lorem ipsum',
-        ],
-      },
-      {
-        competency: 'Pregnancy Identification',
-        levels: [
-          'Understands health of males and females and initial assessment protocols',
-          'Identifies pregnancy using Nischaya Kit',
-          'Conducts initial assessment',
-          'Identifies HRP and Estimates gestational age',
-          'Administers TD/booster as per lorem ipsum',
-        ],
-      },
-      {
-        competency: 'Pregnancy Identification',
-        levels: [
-          'Understands health of males and females and initial assessment protocols',
-          'Identifies pregnancy using Nischaya Kit',
-          'Conducts initial assessment',
-          'Identifies HRP and Estimates gestational age',
-          'Administers TD/booster as per lorem ipsum',
-        ],
-      },
-      {
-        competency: 'Pregnancy Identification',
-        levels: [
-          'Understands health of males and females and initial assessment protocols',
-          'Identifies pregnancy using Nischaya Kit',
-          'Conducts initial assessment',
-          'Identifies HRP and Estimates gestational age',
-          'Administers TD/booster as per lorem ipsum',
-        ],
-      },
-      {
-        competency: 'Pregnancy Identification',
-        levels: [
-          'Understands health of males and females and initial assessment protocols',
-          'Identifies pregnancy using Nischaya Kit',
-          'Conducts initial assessment',
-          'Identifies HRP and Estimates gestational age',
-          'Administers TD/booster as per lorem ipsum',
-        ],
-      },
-    ],
   },
   {
     id: '2',
@@ -307,6 +245,29 @@ export const roles = [
       'Ensure birth planning for all PW',
     ],
     competencies: [
+      {
+        competency: 'Pregnancy Identification',
+      },
+      {
+        competency: 'Pregnancy Identification',
+        levels: [
+          'Understands health of males and females and initial assessment protocols',
+          'Identifies pregnancy using Nischaya Kit',
+          'Conducts initial assessment',
+          'Identifies HRP and Estimates gestational age',
+          'Administers TD/booster as per lorem ipsum',
+        ],
+      },
+      {
+        competency: 'Pregnancy Identification',
+        levels: [
+          'Understands health of males and females and initial assessment protocols',
+          'Identifies pregnancy using Nischaya Kit',
+          'Conducts initial assessment',
+          'Identifies HRP and Estimates gestational age',
+          'Administers TD/booster as per lorem ipsum',
+        ],
+      },
       {
         competency: 'Pregnancy Identification',
         levels: [

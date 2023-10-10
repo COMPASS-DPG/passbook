@@ -28,3 +28,7 @@ export type CompetencyPDFDataType = {
   aggregate: string;
   competencies: CompetencyPDFType[];
 };
+
+export type ChildrenType = {
+  children: React.ReactNode;
+};
