@@ -3,6 +3,18 @@ import React from 'react';
 import CompetencyAccordion from '@/components/competency/competencies/CompetencyAccordion';
 
 const page = () => {
+  // const userData = localStorage.getItem("userData");
+  // if (userData !== null) {
+  //   const userInfo: UserDB = JSON.parse(userData);
+  //   const compList = userInfo.competencies;
+  //   compList.map(compObj => {
+  //
+  //     for(let i=0; i<compObj.levels.length; i++) {
+  //
+  //     }
+  //
+  //   })
+  // }
   return (
     <div className='m-3 h-max'>
       <div className='mb-3 flex justify-around text-center'>

@@ -7,15 +7,24 @@ import { RiVerifiedBadgeFill } from 'react-icons/ri';
 import RoleAccordion from '@/components/competency/role/RoleAccordion';
 import { outfit, poppins } from '@/components/FontFamily';
 
-import { roles } from '@/mockData/roleMock';
-
 import { CompetencyType, RoleDataType } from '@/types/type';
 
 const RoleDetails = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
-  const data = roles?.find((item) => item.id === params.id) as
-    | RoleDataType
-    | undefined;
+
+  const rolesData = localStorage.getItem('userRole');
+  let data: RoleDataType = {
+    id: 0,
+    name: '',
+    status: '',
+    description: '',
+    competencies: [],
+  };
+  if (rolesData !== null) {
+    const roles: RoleDataType[] = JSON.parse(rolesData);
+    const rolesList = roles.filter((role) => role.id.toString() === params.id);
+    data = rolesList[0];
+  }
 
   const handleBack = () => {
     router.back();
@@ -46,15 +55,13 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
           <p
             className={`pb-2.5 ${poppins.className} text-lg font-semibold lowercase `}
           >
-            {data?.role}
+            {data?.name}
           </p>
-          {data?.roleDescription.map((des, i) => {
-            return (
-              <p key={i} className='pb-2.5 text-sm font-normal'>
-                {des}
-              </p>
-            );
-          })}
+          {data?.description && (
+            <p key={`${data.id}-role`} className='pb-2.5 text-sm font-normal'>
+              {data.description}
+            </p>
+          )}
         </div>
         <div>
           <div className='flex items-center gap-2.5 text-[#272728]'>

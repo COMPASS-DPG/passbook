@@ -27,7 +27,7 @@ const RoleCard = ({ data }: ChildProps) => {
           {data.status}
         </p>
         <p className={`${poppins.className} text-sm font-semibold`}>
-          {data.role}
+          {data.name}
         </p>
       </div>
       <div className='h-6 w-6 text-[#65758C] '>

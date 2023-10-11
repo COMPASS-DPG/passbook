@@ -1,9 +1,11 @@
 'use client';
 
 import Head from 'next/head';
+import { useRouter } from 'next/navigation';
 import * as React from 'react';
+import { useEffect } from 'react';
 
-import PassbookPdf from '@/components/Pdf/PassbookPdf';
+// import PassbookPdf from '@/components/Pdf/PassbookPdf';
 
 /**
  * SVGR Support
@@ -18,13 +20,40 @@ import PassbookPdf from '@/components/Pdf/PassbookPdf';
 // to customize the default configuration.
 
 export default function HomePage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    // Make the API call using fetch
+    fetch('/api/user?userId=' + userId, { cache: 'force-cache' })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((apiData) => {
+        // Handle the successful response and update the component's state
+        localStorage.setItem('userData', JSON.stringify(apiData));
+        router.push('/role');
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the API call
+        // eslint-disable-next-line no-console
+        console.error('API call error:', error);
+      });
+  });
+
   return (
     <main>
       <Head>
         <title>Hi</title>
       </Head>
       <section className='bg-white'>
-        <PassbookPdf />
+        <div>
+          <h1>Loading</h1>
+        </div>
+        {/*<PassbookPdf />*/}
       </section>
     </main>
   );

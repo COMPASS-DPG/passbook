@@ -7,7 +7,6 @@ export type levelType = {
   level: string;
   assessmentType: string;
   date: string;
-  percentage: string;
 };
 
 export type CompetencyPDFType = {
@@ -16,10 +15,10 @@ export type CompetencyPDFType = {
 };
 
 export type RoleDataType = {
-  id: string;
-  role: string;
+  id: number;
+  name: string;
   status: string;
-  roleDescription: string[];
+  description: string;
   competencies: CompetencyType[];
 };
 
