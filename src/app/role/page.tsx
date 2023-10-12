@@ -1,10 +1,9 @@
 'use client';
+import { CompetencyDBSchema, UserDB } from '@prismaClient/userType';
 import Link from 'next/link';
 import React from 'react';
 
 import RoleCard from '@/components/competency/role/RoleCard';
-
-import { CompetencyDBSchema, UserDB } from '../../../prisma/userType';
 
 import { CompetencyType, RoleDataType } from '@/types/type';
 
@@ -45,7 +44,11 @@ const page = () => {
         id: role.id,
         name: role.name,
         status:
-          role.completedAssessment > 0 ? 'In Progress' : 'Yet to be started',
+          role.completedAssessment > 0
+            ? role.completedAssessment >= role.totalAssessment
+              ? 'Completed'
+              : 'In Progress'
+            : 'Yet to be started',
         description: role.description,
         competencies: resultComptency,
       };

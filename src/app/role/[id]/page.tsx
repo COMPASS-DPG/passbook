@@ -22,7 +22,9 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
   };
   if (rolesData !== null) {
     const roles: RoleDataType[] = JSON.parse(rolesData);
-    const rolesList = roles.filter((role) => role.id.toString() === params.id);
+    const rolesList = roles.filter(
+      (role) => role.id.toString() === params.id.toString()
+    );
     data = rolesList[0];
   }
 

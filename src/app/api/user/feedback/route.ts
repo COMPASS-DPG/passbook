@@ -1,6 +1,5 @@
+import { addFeedback, fetchUser } from '@prismaClient/userDbAction';
 import { NextRequest, NextResponse } from 'next/server';
-
-import { addFeedback, fetchUser } from '../../../../../prisma/userDbAction';
 
 export async function POST(req: NextRequest) {
   try {

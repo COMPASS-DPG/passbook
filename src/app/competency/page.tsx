@@ -1,20 +1,46 @@
+'use client';
+import {
+  AssessmentDBSchema,
+  CompetencyDBSchema,
+  UserDB,
+} from '@prismaClient/userType';
 import React from 'react';
 
 import CompetencyAccordion from '@/components/competency/competencies/CompetencyAccordion';
 
 const page = () => {
-  // const userData = localStorage.getItem("userData");
-  // if (userData !== null) {
-  //   const userInfo: UserDB = JSON.parse(userData);
-  //   const compList = userInfo.competencies;
-  //   compList.map(compObj => {
-  //
-  //     for(let i=0; i<compObj.levels.length; i++) {
-  //
-  //     }
-  //
-  //   })
-  // }
+  const userData = localStorage.getItem('userData');
+  let compList: CompetencyDBSchema[] = [];
+  let assessmentList: AssessmentDBSchema[] = [];
+  if (userData !== null) {
+    const userInfo: UserDB = JSON.parse(userData);
+    compList = userInfo.competencies;
+    assessmentList = userInfo.assessments;
+    // going through each competency
+    // compList.map((compObj: CompetencyDBSchema) => {
+    //   // going through each level in each competency
+    //   compObj.levels.map((
+    //       levelObj: LevelDBSchema & Partial<any>
+    //   ) => {
+    //     // going through each assessment
+    //     assessmentList.map((assessmentObj: AssessmentDBSchema) => {
+    //       if(
+    //           assessmentObj.level === levelObj.number &&
+    //           assessmentObj.competency === compObj.name
+    //       ) {
+    //         // storing certificate at level
+    //         // sequence PIAA > CBP > SELF > nothing
+    //         let assessment: {type: string, dateOfIssuance: string, certId: string} = levelObj.assessment
+    //         if ass
+    //       }
+    //     })
+    //
+    //   })
+    //
+    // })
+  }
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return (
     <div className='m-3 h-max'>
       <div className='mb-3 flex justify-around text-center'>
@@ -78,11 +104,15 @@ const page = () => {
           <h6 className='mx-1'>Not done</h6>
         </div>
       </div>
-      <CompetencyAccordion />
-      <CompetencyAccordion />
-      <CompetencyAccordion />
-      <CompetencyAccordion />
-      <CompetencyAccordion />
+      {compList.map((compObj: CompetencyDBSchema) => {
+        return (
+          <CompetencyAccordion
+            key={compObj.id}
+            competency={compObj}
+            assessments={assessmentList}
+          />
+        );
+      })}
     </div>
   );
 };

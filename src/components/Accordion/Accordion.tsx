@@ -5,18 +5,26 @@ import { RiArrowDownSLine } from 'react-icons/ri';
 
 import { outfit } from '@/components/FontFamily';
 
+import { LevelWithAssessmentData } from '@/types/type';
+
 type AccordionPropsType = {
   title: string;
   children: React.ReactNode;
   status?: string | null;
-  level?: boolean | null;
+  levels: LevelWithAssessmentData[];
+};
+const COLOR = {
+  PIAA: 'bg-green-400',
+  CBP: 'bg-orange-400',
+  SELF: 'bg-yellow-200',
+  NONE: 'bg-gray-200',
 };
 
 const CustomAccordion = ({
   title,
   children,
   status = null,
-  level = null,
+  levels = [],
 }: AccordionPropsType) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,20 +49,27 @@ const CustomAccordion = ({
             isOpen ? 'rotate-180' : 'rotate-0'
           } transition duration-300  `}
         >
-          {!level && <RiArrowDownSLine size={24} />}
+          {!(levels.length > 0) && <RiArrowDownSLine size={24} />}
         </div>
       </div>
-      {level && (
+      {levels.length > 0 && (
         <div>
           <p className={`text-sm font-semibold  ${outfit.className} my-2`}>
             Levels
           </p>
           <div className='flex flex-row gap-x-0.5'>
-            <div className='basis-1/4 bg-green-400 text-center'>1</div>
-            <div className='basis-1/4 bg-green-400 text-center'>2</div>
-            <div className='basis-1/4 bg-yellow-200 text-center'>3</div>
-            <div className='basis-1/4 bg-orange-400 text-center'>4</div>
-            <div className='basis-1/4 bg-gray-200 text-center'>5</div>
+            {levels.map((level, index = 1) => {
+              return (
+                <div
+                  key={`level-${index}`}
+                  className={`basis-1/4 ${
+                    COLOR[level.assesstmentType]
+                  } text-center`}
+                >
+                  {index}
+                </div>
+              );
+            })}
             <div className='basis-1/4'>
               <div className='cursor-pointer ' onClick={toggleAccordion}>
                 <div
@@ -76,7 +91,7 @@ const CustomAccordion = ({
       >
         {children}
       </div>
-      {level && (
+      {levels.length > 0 && (
         <div className='my-4 flex justify-between gap-4'>
           <button
             className={`h-9 w-1/2 rounded bg-[#EEF5FF] text-[#385B8B] ${outfit.className} text-sm font-semibold`}

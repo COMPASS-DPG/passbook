@@ -27,3 +27,11 @@ export type CompetencyPDFDataType = {
   aggregate: string;
   competencies: CompetencyPDFType[];
 };
+
+export type LevelWithAssessmentData = {
+  name: string;
+  levelNumber: number;
+  assesstmentType: 'PIAA' | 'CBP' | 'SELF' | 'NONE';
+  dateOfIssuance: string;
+  certificateId: string;
+};
