@@ -1,6 +1,6 @@
 import prisma from './prisma';
 import * as userType from './userType';
-import { addRolesSchema } from './userType';
+import { addRolesSchema, CompetencyDBSchema } from './userType';
 
 export const fetchUser = async (userUUId: string) => {
   const user = await prisma.user.findUnique({
@@ -64,6 +64,20 @@ export const addUserInfo = async (
   }
 };
 
+const filterDistinctCompetencies = (
+  competencyArray: CompetencyDBSchema[]
+): CompetencyDBSchema[] => {
+  const distinctCompetencies: CompetencyDBSchema[] = [];
+  const seenIds: Set<number> = new Set();
+
+  competencyArray.forEach((competency) => {
+    if (!seenIds.has(competency.id)) {
+      distinctCompetencies.push(competency);
+      seenIds.add(competency.id);
+    }
+  });
+  return distinctCompetencies;
+};
 export const addRolesAndCompetency = async (
   userId: string,
   roles: addRolesSchema[]
@@ -95,7 +109,7 @@ export const addRolesAndCompetency = async (
       },
       data: {
         roles: roleResult,
-        competencies: competenciesResult,
+        competencies: filterDistinctCompetencies(competenciesResult),
       },
     });
   }
