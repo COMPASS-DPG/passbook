@@ -1,3 +1,4 @@
+'use client';
 import { Font, StyleSheet } from '@react-pdf/renderer';
 
 Font.register({

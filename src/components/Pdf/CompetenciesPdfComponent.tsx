@@ -1,3 +1,4 @@
+'use client';
 import { Text, View } from '@react-pdf/renderer';
 
 import { styles } from '@/components/Pdf/passBookStyle';

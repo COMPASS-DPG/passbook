@@ -4,10 +4,10 @@ export type CompetencyType = {
 };
 
 export type levelType = {
+  percentage: string;
   level: string;
   assessmentType: string;
   date: string;
-  percentage: string;
 };
 
 export type CompetencyPDFType = {
@@ -16,10 +16,10 @@ export type CompetencyPDFType = {
 };
 
 export type RoleDataType = {
-  id: string;
-  role: string;
+  id: number;
+  name: string;
   status: string;
-  roleDescription: string[];
+  description: string;
   competencies: CompetencyType[];
 };
 
@@ -29,6 +29,22 @@ export type CompetencyPDFDataType = {
   competencies: CompetencyPDFType[];
 };
 
+
+export type LevelWithAssessmentData = {
+  name: string;
+  levelNumber: number;
+  assesstmentType: 'PIAA' | 'CBP' | 'SELF' | 'NONE';
+  dateOfIssuance: string;
+  certificateId: string;
+};
+
+export type LevelWithFeedbackData = {
+  name: string;
+  levelNumber: number;
+  score: string;
+};
+
 export type ChildrenType = {
   children: React.ReactNode;
+
 };

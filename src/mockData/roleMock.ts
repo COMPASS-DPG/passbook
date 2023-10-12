@@ -2,8 +2,8 @@ export const roles = [
   {
     id: '1',
     status: 'In Progress',
-    role: 'Conduct safe institutional delivery and provide intrapartum care',
-    roleDescription: [
+    name: 'Conduct safe institutional delivery and provide intrapartum care',
+    description: [
       'Follow up and ensure early registration of pregnant women',
       'Track and ensure ANC check-ups of all PW',
       'Track and ensure PW and HRP are referred to health facilities',
