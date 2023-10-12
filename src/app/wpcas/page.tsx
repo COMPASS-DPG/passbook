@@ -3,7 +3,7 @@ import {
   CompetencyDBSchema,
   feedbackCompetencies,
   FeedbackDBSchema,
-  UserDB,
+  UserDBSchema,
 } from '@prismaClient/userType';
 import Image from 'next/image';
 import React from 'react';
@@ -26,7 +26,7 @@ const Wpcas = () => {
   };
   // let assessmentList: AssessmentDBSchema[] = [];
   if (userData !== null) {
-    const userInfo: UserDB = JSON.parse(userData);
+    const userInfo: UserDBSchema = JSON.parse(userData);
     userCompentecy = userInfo.competencies;
     feedbackList = userInfo.feedbacks;
     if (feedbackList.length > 0) {

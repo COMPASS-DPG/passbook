@@ -3,7 +3,7 @@ import { Text, View } from '@react-pdf/renderer';
 
 import { styles } from '@/components/Pdf/passBookStyle';
 
-import { CompetencyPDFType, levelType } from '@/types/type';
+import { CompetencyPDFType, pdfLevelType } from '@/types/type';
 
 type PropType = {
   data: CompetencyPDFType;
@@ -23,11 +23,11 @@ const TableComponent = ({ data, index }: PropType) => {
         </View>
 
         <View style={styles.levelChart}>
-          {data.levels?.map((data: levelType, i: number) => {
+          {data.levels?.map((data: pdfLevelType, i: number) => {
             const levelStyle =
               (data.assessmentType == 'PIAA' && styles.level1) ||
               (data.assessmentType == 'CBP' && styles.level2) ||
-              (data.assessmentType == 'Self' && styles.level3) ||
+              (data.assessmentType == 'SELF' && styles.level3) ||
               styles.level4;
             return (
               <Text key={i} style={levelStyle}>
@@ -38,12 +38,12 @@ const TableComponent = ({ data, index }: PropType) => {
         </View>
 
         <Text style={styles.logText}>Logs</Text>
-        {data.levels?.map((data: levelType, i: number) => {
+        {data.levels?.map((data: pdfLevelType, i: number) => {
           return (
             <View
               key={i}
               style={
-                data.assessmentType == 'Not done'
+                data.assessmentType == 'NONE'
                   ? styles.logsListWithGrayColor
                   : styles.logsList
               }
@@ -55,16 +55,12 @@ const TableComponent = ({ data, index }: PropType) => {
                 <View>
                   <Text style={styles.listText}>{data.level}</Text>
                   <View style={styles.surveyDateContainer}>
-                    {data.assessmentType !== 'Not done' && (
+                    {data.assessmentType !== 'NONE' && (
                       <>
-                        <Text style={styles.surveyDate}>Survey Date: </Text>
-                        <Text
-                          style={
-                            data?.assessmentType == 'Not done'
-                              ? styles.logsDateGrayColor
-                              : styles.logsDate
-                          }
-                        >
+                        <Text style={styles.surveyDate}>
+                          Certificate Date:{' '}
+                        </Text>
+                        <Text style={styles.logsDateGrayColor}>
                           {data?.date}
                         </Text>
                       </>
@@ -74,7 +70,7 @@ const TableComponent = ({ data, index }: PropType) => {
               </View>
               <View style={styles.listPercentageContainer}>
                 <Text style={styles.listPercentage}>
-                  {data.assessmentType == 'Not done' ? '' : data?.percentage}
+                  {data.assessmentType == 'NONE' ? '' : data?.percentage}
                 </Text>
               </View>
             </View>

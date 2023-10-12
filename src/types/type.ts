@@ -3,16 +3,16 @@ export type CompetencyType = {
   levels: string[];
 };
 
-export type levelType = {
+export type pdfLevelType = {
   percentage: string;
   level: string;
-  assessmentType: string;
-  date: string;
+  assessmentType: 'PIAA' | 'CBP' | 'SELF' | 'NONE';
+  date?: string;
 };
 
 export type CompetencyPDFType = {
   competency: string;
-  levels: levelType[];
+  levels: pdfLevelType[];
 };
 
 export type RoleDataType = {
@@ -28,7 +28,6 @@ export type CompetencyPDFDataType = {
   aggregate: string;
   competencies: CompetencyPDFType[];
 };
-
 
 export type LevelWithAssessmentData = {
   name: string;
@@ -46,5 +45,4 @@ export type LevelWithFeedbackData = {
 
 export type ChildrenType = {
   children: React.ReactNode;
-
 };

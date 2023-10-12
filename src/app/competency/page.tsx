@@ -2,7 +2,7 @@
 import {
   AssessmentDBSchema,
   CompetencyDBSchema,
-  UserDB,
+  UserDBSchema,
 } from '@prismaClient/userType';
 import React from 'react';
 
@@ -20,12 +20,10 @@ const page = () => {
   let compList: CompetencyDBSchema[] = [];
   let assessmentList: AssessmentDBSchema[] = [];
   if (userData !== null) {
-    const userInfo: UserDB = JSON.parse(userData);
+    const userInfo: UserDBSchema = JSON.parse(userData);
     compList = userInfo.competencies;
     assessmentList = userInfo.assessments;
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   return (
     <div className='m-3 h-max'>
       <div className='mb-3 flex justify-around text-center'>

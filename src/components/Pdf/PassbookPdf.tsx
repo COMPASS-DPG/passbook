@@ -1,4 +1,5 @@
 'use client';
+import { FeedbackDBSchema } from '@prismaClient/userType';
 import {
   Circle,
   Document,
@@ -8,11 +9,10 @@ import {
   Text,
   View,
 } from '@react-pdf/renderer';
+import React from 'react';
 
 import TableComponent from '@/components/Pdf/CompetenciesPdfComponent';
 import { styles } from '@/components/Pdf/passBookStyle';
-
-import { pdfMonk } from '@/mockData/pdfMock';
 
 import { CompetencyPDFType } from '@/types/type';
 
@@ -40,8 +40,15 @@ const NotDoneSvg = () => (
   </Svg>
 );
 
-const PassbookPdf = () => {
-  const pdfData = pdfMonk.competencies as CompetencyPDFType[];
+interface PassbookPdfProps {
+  pdfFeedback: FeedbackDBSchema;
+  pdfData: CompetencyPDFType[];
+}
+const PassbookPdf: React.FC<PassbookPdfProps> = ({
+  pdfFeedback: pdfFeedback,
+  pdfData: pdfData,
+}) => {
+  // const pdfData = pdfMonk.competencies as competenciesPdfComponent[];
 
   return (
     <PDFViewer style={styles.pdfViewer}>
@@ -54,15 +61,20 @@ const PassbookPdf = () => {
             <Text style={styles.overAllCompassText}>Overall WPCAS</Text>
             <View style={styles.dataAndPercentageContainer}>
               <View style={styles.percentageContainer}>
-                <Text style={styles.percentageText}>{pdfMonk.aggregate}</Text>
+                <Text style={styles.percentageText}>
+                  {pdfFeedback?.overallScore}
+                </Text>
                 <Text style={styles.aggregateText}>Aggregate %</Text>
               </View>
               <View style={styles.dateContainer}>
                 <View style={styles.rightAlignText}>
-                  <Text>PDF Generation Date:</Text>
+                  <Text>
+                    PDF Generation Date:{' '}
+                    {new Date().toLocaleDateString('en-GB')}
+                  </Text>
                 </View>
                 <View style={styles.rightAlignText}>
-                  <Text>{pdfMonk.date}</Text>
+                  <Text>{pdfFeedback?.dateOfSurveyScore}</Text>
                 </View>
               </View>
             </View>

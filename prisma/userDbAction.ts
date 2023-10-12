@@ -73,12 +73,17 @@ export const addRolesAndCompetency = async (
   const roleResult: userType.RoleDBSchema[] = [];
 
   roles.map((role) => {
+    // for counting how many total assessments are needed per roles
+    let totalAssignmentCount = 0;
+    role.competency.map((competency) => {
+      totalAssignmentCount += competency.levels.length;
+    });
     roleResult.push({
       id: role.id,
       name: role.name,
       description: role.description,
       competencyIds: role.competency.map((competency) => competency.id),
-      totalAssessment: 0,
+      totalAssessment: totalAssignmentCount,
       completedAssessment: 0,
     });
     competenciesResult.push(...role.competency);
@@ -100,18 +105,29 @@ export const addAssessment = async (
   userId: string,
   assessmentInfo: userType.addAssessmentSchema
 ) => {
-  // const user = await fetchUser(userId);
-  const userInfo = await prisma.user.update({
-    where: {
-      userId: userId,
-    },
-    data: {
-      assessments: {
-        push: assessmentInfo,
+  const userInfo = await fetchUser(userId);
+  if (userInfo) {
+    let roles = userInfo.roles;
+    roles = roles.map((role) => {
+      if (assessmentInfo.competencyId in role.competencyIds) {
+        role.completedAssessment = role.completedAssessment + 1;
+      }
+      return role;
+    });
+    const user = await prisma.user.update({
+      where: {
+        userId: userId,
       },
-    },
-  });
-  return userInfo;
+      data: {
+        assessments: {
+          push: assessmentInfo,
+        },
+        roles: roles,
+      },
+    });
+    return user;
+  }
+  return null;
 };
 
 export const removeAssessment = async (

@@ -1,5 +1,5 @@
 'use client';
-import { CompetencyDBSchema, UserDB } from '@prismaClient/userType';
+import { CompetencyDBSchema, UserDBSchema } from '@prismaClient/userType';
 import Link from 'next/link';
 import React from 'react';
 
@@ -14,7 +14,7 @@ const page = () => {
   let finalRoles: RoleDataType[] = [];
 
   if (userData !== null) {
-    const userInfo: UserDB = JSON.parse(userData);
+    const userInfo: UserDBSchema = JSON.parse(userData);
     const competency = userInfo.competencies;
     const tempRoles = userInfo.roles;
     // going through the roles in localstorage to manipulate the data

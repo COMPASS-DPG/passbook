@@ -1,5 +1,6 @@
 'use client';
 import { PDFDownloadLink } from '@react-pdf/renderer';
+import { useRouter } from 'next/navigation';
 import { BsShare } from 'react-icons/bs';
 import { LuDownload } from 'react-icons/lu';
 
@@ -8,6 +9,7 @@ import { outfit } from '@/components/FontFamily';
 import PassbookPdf from '@/components/Pdf/PassbookPdf';
 
 const SubNavbar = () => {
+  const router = useRouter();
   return (
     <div className={`sticky top-0 z-10 bg-white  ${outfit.className}`}>
       <div className='flex items-center justify-between p-[20px] text-white'>
@@ -18,6 +20,7 @@ const SubNavbar = () => {
           <button
             className='flex h-10 w-10 items-center justify-center 
             rounded-md  bg-[#385B8B]'
+            onClick={() => router.push('/pdf')}
           >
             <BsShare size={24} />
           </button>

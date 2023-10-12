@@ -64,7 +64,7 @@ export type LevelDBSchema = {
   name: string;
 };
 
-export type UserDB = {
+export type UserDBSchema = {
   id: number;
   userId: string;
   name: string;

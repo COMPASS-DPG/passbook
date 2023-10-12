@@ -56,7 +56,10 @@ export default function HomePage() {
             Loading Your Passbook...
           </p>
         </div>
-        {/*<PassbookPdf />*/}
+        {/*<div>*/}
+        {/*  Hi*/}
+        {/*  <PassbookPdf />*/}
+        {/*</div>*/}
       </section>
     </main>
   );
