@@ -50,8 +50,11 @@ export default function HomePage() {
         <title>Hi</title>
       </Head>
       <section className='bg-white'>
-        <div>
-          <h1>Loading</h1>
+        <div className='flex h-screen flex-col items-center justify-center'>
+          <div className='h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-blue-500'></div>
+          <p className='mt-4 text-lg font-semibold text-gray-600'>
+            Loading Your Passbook...
+          </p>
         </div>
         {/*<PassbookPdf />*/}
       </section>
