@@ -8,8 +8,6 @@ import NoRoleError from '@/components/errorScreen/NoRoleError';
 
 import { CompetencyType, RoleDataType } from '@/types/type';
 
-import { RoleDataType } from '@/types/type';
-
 const page = () => {
   const userData = localStorage.getItem('userData');
   // const roles: RoleDataType[]= [];
@@ -63,24 +61,20 @@ const page = () => {
   if (finalRoles.length < 1) {
     return (
       <div>
-        <h2>No roles Attached to your designation</h2>
+        <NoRoleError />
       </div>
     );
   }
 
   return (
     <>
-
-      {finalRoles && finalRoles.length > 0 ? (
-        finalRoles.map((item, i) => {
+      {finalRoles.map((item, i) => {
         return (
           <Link key={i} href={`role/${item.id}`}>
             <RoleCard data={item} />
           </Link>
         );
-      ) : (
-        <NoRoleError />
-      )}
+      })}
     </>
   );
 };
