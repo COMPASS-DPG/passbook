@@ -13,10 +13,11 @@ type AccordionPropsType = {
   status?: string | null;
   levels: LevelWithAssessmentData[];
 };
+
 const COLOR = {
   PIAA: 'bg-green-400',
-  CBP: 'bg-orange-400',
-  SELF: 'bg-yellow-200',
+  CBP: 'bg-yellow-200',
+  SELF: 'bg-orange-400',
   NONE: 'bg-gray-200',
 };
 
@@ -58,7 +59,7 @@ const CustomAccordion = ({
             Levels
           </p>
           <div className='flex flex-row gap-x-0.5'>
-            {levels.map((level, index = 1) => {
+            {levels.map((level, index) => {
               return (
                 <div
                   key={`level-${index}`}
@@ -66,7 +67,7 @@ const CustomAccordion = ({
                     COLOR[level.assesstmentType]
                   } text-center`}
                 >
-                  {index}
+                  {level.levelNumber}
                 </div>
               );
             })}

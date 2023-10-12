@@ -28,7 +28,7 @@ export type addFeedback = {
   dateOfSurveyScore: string;
   certificateId: string;
   overallScore: number;
-  competencies: feedbackCompetencies;
+  competencies: feedbackCompetencies[];
 };
 
 export type feedbackCompetencies = {
@@ -37,7 +37,7 @@ export type feedbackCompetencies = {
   levels: {
     name: string;
     id?: number;
-    level: number;
+    levelNumber: number;
     score: number;
   }[];
 };
@@ -96,8 +96,8 @@ enum AssessmentType {
 }
 
 export type FeedbackDBSchema = {
-  dateOfSurveyScore: Date;
+  dateOfSurveyScore: string;
   certificateId: string;
-  overallScore: number;
-  competencies: feedbackCompetencies;
+  overallScore: number | string;
+  competencies: feedbackCompetencies[];
 };

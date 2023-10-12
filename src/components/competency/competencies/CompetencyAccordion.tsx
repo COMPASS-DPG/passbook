@@ -75,7 +75,7 @@ const CompetencyAccordion: React.FC<CompetencyAccordionProps> = ({
           </div>
         </div>
         <ul className='text-sm font-normal text-[#272728]'>
-          {resultLevels.map((level, i) => {
+          {resultLevels.map((level, i = 1) => {
             if (level.assesstmentType !== 'NONE') {
               return (
                 <li key={i}>

@@ -4,6 +4,7 @@ export type CompetencyType = {
 };
 
 export type levelType = {
+  percentage: string;
   level: string;
   assessmentType: string;
   date: string;
@@ -34,4 +35,10 @@ export type LevelWithAssessmentData = {
   assesstmentType: 'PIAA' | 'CBP' | 'SELF' | 'NONE';
   dateOfIssuance: string;
   certificateId: string;
+};
+
+export type LevelWithFeedbackData = {
+  name: string;
+  levelNumber: number;
+  score: string;
 };

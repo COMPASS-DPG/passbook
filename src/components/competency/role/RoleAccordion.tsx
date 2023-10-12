@@ -14,7 +14,7 @@ interface ChildProps {
 
 const RoleAccordion = ({ data }: ChildProps) => {
   return (
-    <CustomAccordion title={data?.competency}>
+    <CustomAccordion title={data?.competency} levels={[]}>
       <div>
         <div className='flex items-center gap-2.5 py-5 text-[#272728]'>
           <div>

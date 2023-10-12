@@ -1,3 +1,8 @@
+'use client';
+import {
+  CompetencyDBSchema,
+  feedbackCompetencies,
+} from '@prismaClient/userType';
 import Image from 'next/image';
 import React from 'react';
 
@@ -6,9 +11,42 @@ import { outfit } from '@/components/FontFamily';
 
 import levelIcon from '../../../../public/images/levelIcon.png';
 
-const WpcasAccordion = () => {
+import { LevelWithFeedbackData } from '@/types/type';
+
+interface WPCASAccordionProps {
+  key: number;
+  userCompetency: CompetencyDBSchema;
+  feedbackCompetency: feedbackCompetencies | null;
+}
+
+const WpcasAccordion: React.FC<WPCASAccordionProps> = ({
+  key: key,
+  userCompetency: userCompetency,
+  feedbackCompetency: feedbackCompetency,
+}) => {
+  const resultLevels: LevelWithFeedbackData[] = [];
+  userCompetency?.levels?.map((userLevel) => {
+    const wpcasLevel = {
+      name: userLevel.name,
+      levelNumber: userLevel.number,
+      score: '--',
+    };
+    feedbackCompetency?.levels.map((feedbackLevel) => {
+      if (userLevel.name === feedbackLevel.name) {
+        wpcasLevel.score = feedbackLevel.score.toString();
+      }
+    });
+
+    resultLevels.push(wpcasLevel);
+  });
+
   return (
-    <CustomAccordion title='Pregnancy Identification' status='Competency'>
+    <CustomAccordion
+      key={key}
+      title={userCompetency.name}
+      status='Competency'
+      levels={[]}
+    >
       <div>
         <div className='flex items-center gap-2.5 py-5  text-[#272728]'>
           <table className='w-full table-fixed'>
@@ -46,39 +84,19 @@ const WpcasAccordion = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className={`py-3 ${outfit.className} text-sm`}>
-                  Understands health of males and females and initial assessment
-                  protocols{' '}
-                </td>
-                <td className='px-2 text-right font-semibold'>68%</td>
-              </tr>
-              <tr>
-                <td className={`py-3 ${outfit.className} text-sm`}>
-                  Conducts initial assessment
-                </td>
-                <td className='px-2 text-right font-semibold'>70%</td>
-              </tr>
-              <tr>
-                <td className={`py-3 ${outfit.className} text-sm`}>
-                  Identifies HRP and Estimates gestational age
-                </td>
-                <td className='px-2 text-right font-semibold'>50%</td>
-              </tr>
-              <tr>
-                <td
-                  className={`py-3 ${outfit.className} text-sm text-[#65758C]`}
-                >
-                  Identifies pregnancy using Nischaya Kit
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className={`py-3 ${outfit.className} text-sm text-[#65758C]`}
-                >
-                  Administers TD/booster as per lorem ipsum
-                </td>
-              </tr>
+              {resultLevels.map((level, i) => {
+                return (
+                  <tr key={i}>
+                    <td className={`py-3 ${outfit.className} text-sm`}>
+                      {level.name}
+                    </td>
+                    <td className='px-2 text-right font-semibold'>
+                      {' '}
+                      {level.score}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

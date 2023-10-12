@@ -1,15 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
-
-//#FIXME: have to remove this
-import { rolesAndCompetencyData, userInfo } from '@/app/api/user/const.js';
-
 import {
   addRolesAndCompetency,
   addUser,
   addUserInfo,
   fetchUser,
-} from '../../../../prisma/userDbAction';
-import { addRolesSchema } from '../../../../prisma/userType';
+} from '@prismaClient/userDbAction';
+import { addRolesSchema } from '@prismaClient/userType';
+import { NextRequest, NextResponse } from 'next/server';
+
+//#FIXME: have to remove this
+import { rolesAndCompetencyData, userInfo } from '@/app/api/user/const.js';
 
 export async function GET(req: NextRequest) {
   try {
@@ -17,14 +16,20 @@ export async function GET(req: NextRequest) {
     // Use Prisma to fetch the user based on userId
     if (userId) {
       const user = await fetchUser(userId);
-      return NextResponse.json(user, { status: 200 });
+      if (user) {
+        return NextResponse.json(user, { status: 200 });
+      }
+      return NextResponse.json({ error: 'user not found' }, { status: 404 });
     }
-    return NextResponse.json({ message: 'User not found' }, { status: 404 });
+    return NextResponse.json(
+      { error: 'Please pass valide userId value' },
+      { status: 404 }
+    );
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
     return new NextResponse(
-      JSON.stringify({ message: 'Internal server error' }),
+      JSON.stringify({ error: 'Internal server error' }),
       { status: 500 }
     );
   } finally {
@@ -68,8 +73,7 @@ export async function POST(req: NextRequest) {
   // console.log(req)
   try {
     const { userId } = await req.json();
-    // console.log(userId)
-    if (userId) {
+    if (userId !== null && userId.length > 0) {
       // Use Prisma to fetch the user based on userId
       const [user, isNew] = await addUser(userId);
       // check if user object is there
