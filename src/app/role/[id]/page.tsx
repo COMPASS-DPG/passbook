@@ -5,7 +5,6 @@ import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 
 import RoleAccordion from '@/components/competency/role/RoleAccordion';
-import NoCompetencyError from '@/components/errorScreen/NoCompetencyError';
 import { outfit, poppins } from '@/components/FontFamily';
 
 import { roles } from '@/mockData/roleMock';
@@ -39,9 +38,9 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
         <div>
           <p
             className={`pb-2.5 text-sm font-medium  
-          ${data?.status.toLowerCase() === 'completed' && 'text-[#7DCC8A]'}
-           ${data?.status.toLowerCase() === 'in progress' && 'text-[#FF9667]'}
-        ${data?.status.toLowerCase() === 'yet to start' && 'text-[#787878]'}`}
+          ${data?.status?.toLowerCase() === 'completed' && 'text-[#7DCC8A]'}
+           ${data?.status?.toLowerCase() === 'in progress' && 'text-[#FF9667]'}
+        ${data?.status?.toLowerCase() === 'yet to start' && 'text-[#787878]'}`}
           >
             {data?.status}
           </p>
@@ -50,7 +49,7 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
           >
             {data?.role}
           </p>
-          {data?.roleDescription.map((des, i) => {
+          {data?.roleDescription?.map((des, i) => {
             return (
               <p key={i} className='pb-2.5 text-sm font-normal'>
                 {des}
@@ -68,17 +67,13 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <div className='my-5'>
-            {data?.competencies && data.competencies.length !== 0 ? (
-              data?.competencies?.map((competency: CompetencyType, i) => {
-                return (
-                  <div key={i}>
-                    <RoleAccordion data={competency} />
-                  </div>
-                );
-              })
-            ) : (
-              <NoCompetencyError />
-            )}
+            {data?.competencies?.map((competency: CompetencyType, i) => {
+              return (
+                <div key={i}>
+                  <RoleAccordion data={competency} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

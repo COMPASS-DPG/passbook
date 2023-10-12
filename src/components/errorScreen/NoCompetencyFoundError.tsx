@@ -2,22 +2,22 @@ import React from 'react';
 
 import { outfit } from '@/components/FontFamily';
 
-import NoCompetencyErrorLogo from '~/svg/NoCompetencyErrorLogo.svg';
+import NotFoundLogo from '~/svg/notFoundLogo.svg';
 
-const NoCompetencyError = () => {
+const NoCompetencyFoundError = () => {
   return (
     <div className='mt-[80px] text-center'>
       <div className='item-center mb-3 flex justify-center'>
-        <NoCompetencyErrorLogo className='w-[80px]' />
+        <NotFoundLogo className='w-[80px]' />
       </div>
       <div
         className={`text-base font-normal 
       ${outfit.className} text-[#272728]`}
       >
-        No Competencies yet
+        No Competencies found
       </div>
     </div>
   );
 };
 
-export default NoCompetencyError;
+export default NoCompetencyFoundError;
