@@ -26,7 +26,8 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
       <div className='flex items-center px-[22px] py-1.5'>
         <button
           className='mr-[15px] flex h-11 w-11 cursor-pointer 
-        items-center justify-center rounded-md border-2 border-solid border-gray-200 hover:bg-gray-100'
+        items-center justify-center rounded-md border-2 
+        border-solid border-gray-200 hover:bg-gray-100'
           onClick={handleBack}
         >
           <MdOutlineKeyboardArrowLeft size={28} />
@@ -37,9 +38,9 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
         <div>
           <p
             className={`pb-2.5 text-sm font-medium  
-          ${data?.status.toLowerCase() === 'completed' && 'text-[#7DCC8A]'}
-           ${data?.status.toLowerCase() === 'in progress' && 'text-[#FF9667]'}
-        ${data?.status.toLowerCase() === 'yet to start' && 'text-[#787878]'}`}
+          ${data?.status?.toLowerCase() === 'completed' && 'text-[#7DCC8A]'}
+           ${data?.status?.toLowerCase() === 'in progress' && 'text-[#FF9667]'}
+        ${data?.status?.toLowerCase() === 'yet to start' && 'text-[#787878]'}`}
           >
             {data?.status}
           </p>
@@ -48,7 +49,7 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
           >
             {data?.role}
           </p>
-          {data?.roleDescription.map((des, i) => {
+          {data?.roleDescription?.map((des, i) => {
             return (
               <p key={i} className='pb-2.5 text-sm font-normal'>
                 {des}
@@ -66,7 +67,7 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           <div className='my-5'>
-            {data?.competencies.map((competency: CompetencyType, i) => {
+            {data?.competencies?.map((competency: CompetencyType, i) => {
               return (
                 <div key={i}>
                   <RoleAccordion data={competency} />
