@@ -1,3 +1,5 @@
+import fetchRolesFromFrac from '@mock/frac';
+import fetchUserById from '@mock/userOrg';
 import {
   addRolesAndCompetency,
   addUser,
@@ -8,7 +10,6 @@ import { addRolesSchema } from '@prismaClient/userType';
 import { NextRequest, NextResponse } from 'next/server';
 
 //#FIXME: have to remove this
-import { rolesAndCompetencyData, userInfo } from '@/app/api/user/const.js';
 
 export async function GET(req: NextRequest) {
   try {
@@ -39,35 +40,35 @@ export async function GET(req: NextRequest) {
   }
 }
 
-const userService = () => {
-  // const userService = (userId: string) => {
-  return userInfo;
-};
+// const userService = () => {
+//   // const userService = (userId: string) => {
+//   return userInfo;
+// };
 // const fracService = (designation: string) => {
-const fracService = () => {
-  // const myHeaders = new Headers();
-  // myHeaders.append("Content-Type", "application/json");
-  //
-  // const raw = JSON.stringify({
-  //     "desgination": "software engineer"
-  // });
-  //
-  // const requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow'
-  // };
-  // let resp = null;
-  // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // // @ts-ignore
-  // fetch("http://test-compass.free.beeceptor.com/frac/getrole", requestOptions)
-  //     .then(response => response.text())
-  //     .then(result => {console.log(result); resp = result})
-  //     .catch(error => console.log('error', error));
-  // console.log(designation)
-  return rolesAndCompetencyData;
-};
+// const fracService = () => {
+//   // const myHeaders = new Headers();
+//   // myHeaders.append("Content-Type", "application/json");
+//   //
+//   // const raw = JSON.stringify({
+//   //     "desgination": "software engineer"
+//   // });
+//   //
+//   // const requestOptions = {
+//   //     method: 'POST',
+//   //     headers: myHeaders,
+//   //     body: raw,
+//   //     redirect: 'follow'
+//   // };
+//   // let resp = null;
+//   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//   // // @ts-ignore
+//   // fetch("http://test-compass.free.beeceptor.com/frac/getrole", requestOptions)
+//   //     .then(response => response.text())
+//   //     .then(result => {console.log(result); resp = result})
+//   //     .catch(error => console.log('error', error));
+//   // console.log(designation)
+//   return rolesAndCompetencyData;
+// };
 
 export async function POST(req: NextRequest) {
   // console.log(req)
@@ -82,16 +83,24 @@ export async function POST(req: NextRequest) {
       }
       // check if user object is new or just fetch is done
       if (isNew) {
-        //adding different values to the userObject
-        // FIXME: have to change with the services
-        const { name, team, phone, designation } = userService();
+        //adding different values to the new user OBject
+        const { name, team, phone, designation } = await fetchUserById(userId);
         await addUserInfo(userId, name, team, phone, designation);
         // console.log("user info of user has been updated")
         // FIXME: have to change with the services
-        const rolesAndCompetency: { roles: addRolesSchema[] } = fracService();
-        await addRolesAndCompetency(userId, rolesAndCompetency['roles']);
+        const rolesAndCompetency: { roles: addRolesSchema[] } =
+          await fetchRolesFromFrac();
+        await addRolesAndCompetency(userId, rolesAndCompetency.roles);
         // console.log("frac data of user has been updated")
       } else {
+        //fetching the frac and user service again for the user
+        // FIXME: have to change with the services
+        const { name, team, phone, designation } = await fetchUserById(userId);
+        await addUserInfo(userId, name, team, phone, designation);
+        // FIXME: have to change with the services
+        const rolesAndCompetency: { roles: addRolesSchema[] } =
+          await fetchRolesFromFrac();
+        await addRolesAndCompetency(userId, rolesAndCompetency.roles);
         return NextResponse.json(
           { message: 'user was already there' },
           { status: 200 }

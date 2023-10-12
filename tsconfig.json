@@ -17,7 +17,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./public/*"],
-      "@prismaClient/*": ["./prisma/*"]
+      "@prismaClient/*": ["./prisma/*"],
+      "@mock/*": ["./mockService/*"]
     },
     "incremental": true,
     "plugins": [
