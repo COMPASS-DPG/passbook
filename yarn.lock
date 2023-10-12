@@ -2075,6 +2075,13 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   "version" "15.7.4"
 
+"@types/react-detect-offline@^2.4.1":
+  "integrity" "sha512-ympSl07fvDbu7+EsnhrKwDWkdOqHp22lukhJYIHxnTfSIzOh1T/K9NGmpwKUtgJaNCfllwLvMSXBlyC6nHEObw=="
+  "resolved" "https://registry.npmjs.org/@types/react-detect-offline/-/react-detect-offline-2.4.1.tgz"
+  "version" "2.4.1"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^18.0.0":
   "integrity" "sha512-UxeS+Wtj5bvLRREz9tIgsK4ntCuLDo0EcAcACgw3E+9wE8ePDr9uQpq53MfcyxyIS55xJ+0B6mDS8c4qkkHLBg=="
   "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.2.tgz"
@@ -6013,6 +6020,11 @@
   "version" "2.1.0"
   dependencies:
     "safe-buffer" "^5.1.0"
+
+"react-detect-offline@^2.4.5":
+  "integrity" "sha512-sI13NPEKl3uQp95FT5CwrYzH3DnXCwNP6TnY6NRF5gFDM4NU9KDlbtA6HG2dwhDVS0RYQGXwZW/mHbdf8fCnaw=="
+  "resolved" "https://registry.npmjs.org/react-detect-offline/-/react-detect-offline-2.4.5.tgz"
+  "version" "2.4.5"
 
 "react-dom@^18.0.0", "react-dom@^18.2.0":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="

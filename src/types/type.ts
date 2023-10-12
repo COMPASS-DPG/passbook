@@ -29,6 +29,7 @@ export type CompetencyPDFDataType = {
   competencies: CompetencyPDFType[];
 };
 
+
 export type LevelWithAssessmentData = {
   name: string;
   levelNumber: number;
@@ -41,4 +42,9 @@ export type LevelWithFeedbackData = {
   name: string;
   levelNumber: number;
   score: string;
+};
+
+export type ChildrenType = {
+  children: React.ReactNode;
+
 };

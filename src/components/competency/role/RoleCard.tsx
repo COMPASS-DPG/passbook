@@ -18,10 +18,10 @@ const RoleCard = ({ data }: ChildProps) => {
       <div>
         <p
           className={`${
-            data.status.toLowerCase() === 'completed' && 'text-[#7DCC8A]'
-          } ${data.status.toLowerCase() === 'in progress' && 'text-[#FF9667]'}
+            data?.status?.toLowerCase() === 'completed' && 'text-[#7DCC8A]'
+          } ${data?.status?.toLowerCase() === 'in progress' && 'text-[#FF9667]'}
         ${
-          data.status.toLowerCase() === 'yet to start' && 'text-[#787878]'
+          data?.status?.toLowerCase() === 'yet to start' && 'text-[#787878]'
         } text-xs ${outfit.className} font-medium `}
         >
           {data.status}

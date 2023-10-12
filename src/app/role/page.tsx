@@ -4,8 +4,11 @@ import Link from 'next/link';
 import React from 'react';
 
 import RoleCard from '@/components/competency/role/RoleCard';
+import NoRoleError from '@/components/errorScreen/NoRoleError';
 
 import { CompetencyType, RoleDataType } from '@/types/type';
+
+import { RoleDataType } from '@/types/type';
 
 const page = () => {
   const userData = localStorage.getItem('userData');
@@ -67,13 +70,17 @@ const page = () => {
 
   return (
     <>
-      {finalRoles.map((item, i) => {
+
+      {finalRoles && finalRoles.length > 0 ? (
+        finalRoles.map((item, i) => {
         return (
           <Link key={i} href={`role/${item.id}`}>
             <RoleCard data={item} />
           </Link>
         );
-      })}
+      ) : (
+        <NoRoleError />
+      )}
     </>
   );
 };
