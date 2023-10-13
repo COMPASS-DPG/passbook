@@ -290,4 +290,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  nameAndIdContainer: {
+    flexDirection: 'row',
+    gap: '10px',
+  },
+  nameKey: {
+    fontFamily: 'Outfit',
+    fontWeight: 'normal',
+    flexDirection: 'row',
+    fontSize: '9px',
+    padding: '3px 0px',
+  },
+  nameText: {
+    color: 'gray',
+  },
 });

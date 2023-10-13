@@ -1,15 +1,19 @@
 'use client';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useRouter } from 'next/navigation';
+import React from 'react';
 import { BsShare } from 'react-icons/bs';
 import { LuDownload } from 'react-icons/lu';
 
 import NavBarLink from '@/components/competency/NavBarLink';
 import { outfit } from '@/components/FontFamily';
-import PassbookPdf from '@/components/Pdf/PassbookPdf';
+import PassbookPdfDownload from '@/components/Pdf/PassbookPdfDownload';
+import usePDFData from '@/components/Pdf/usePdfData';
 
 const SubNavbar = () => {
   const router = useRouter();
+  const { pdfFeedback, pdfData, userName, userId } = usePDFData();
+
   return (
     <div className={`sticky top-0 z-10 bg-white  ${outfit.className}`}>
       <div className='flex items-center justify-between p-[20px] text-white'>
@@ -24,7 +28,17 @@ const SubNavbar = () => {
           >
             <BsShare size={24} />
           </button>
-          <PDFDownloadLink document={<PassbookPdf />} fileName='form'>
+          <PDFDownloadLink
+            document={
+              <PassbookPdfDownload
+                pdfFeedback={pdfFeedback}
+                pdfData={pdfData}
+                userId={userId}
+                userName={userName}
+              />
+            }
+            fileName='form'
+          >
             {({ loading }) =>
               !loading && (
                 <button
