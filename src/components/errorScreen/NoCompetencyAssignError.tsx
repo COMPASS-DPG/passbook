@@ -14,7 +14,7 @@ const NoCompetencyAssignError = () => {
         className={`text-base font-normal 
       ${outfit.className} text-[#272728]`}
       >
-        No Competencies assigned yet
+        No Competencies found.
       </div>
     </div>
   );

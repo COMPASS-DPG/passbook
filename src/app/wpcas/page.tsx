@@ -9,6 +9,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import WpcasAccordion from '@/components/competency/wpcas/WpcasAccordion';
+import NoCompetencyAssignError from '@/components/errorScreen/NoCompetencyAssignError';
 import { outfit } from '@/components/FontFamily';
 
 import survey from '../../../public/svg/survey.png';
@@ -17,7 +18,7 @@ const Wpcas = () => {
   const userData = localStorage.getItem('userData');
 
   let feedbackList: FeedbackDBSchema[] = [];
-  let userCompentecy: CompetencyDBSchema[] = [];
+  let userCompetency: CompetencyDBSchema[] = [];
   let feedback: FeedbackDBSchema = {
     overallScore: '--',
     dateOfSurveyScore: '',
@@ -27,7 +28,7 @@ const Wpcas = () => {
   // let assessmentList: AssessmentDBSchema[] = [];
   if (userData !== null) {
     const userInfo: UserDBSchema = JSON.parse(userData);
-    userCompentecy = userInfo.competencies;
+    userCompetency = userInfo.competencies;
     feedbackList = userInfo.feedbacks;
     if (feedbackList.length > 0) {
       feedback = feedbackList[feedbackList.length - 1];
@@ -87,15 +88,19 @@ const Wpcas = () => {
           </h6>
         </div>
       </div>
-      {userCompentecy.map((competency, i) => {
-        return (
-          <WpcasAccordion
-            key={i}
-            userCompetency={competency}
-            feedbackCompetency={filterFeedbackCompetency(competency)}
-          />
-        );
-      })}
+      {userCompetency && userCompetency?.length !== 0 ? (
+        userCompetency?.map((competency, i) => {
+          return (
+            <WpcasAccordion
+              key={i}
+              userCompetency={competency}
+              feedbackCompetency={filterFeedbackCompetency(competency)}
+            />
+          );
+        })
+      ) : (
+        <NoCompetencyAssignError />
+      )}
     </div>
   );
 };

@@ -7,6 +7,7 @@ import {
 import React from 'react';
 
 import CompetencyAccordion from '@/components/competency/competencies/CompetencyAccordion';
+import NoCompetencyFoundError from '@/components/errorScreen/NoCompetencyFoundError';
 
 const AssessmentTypes = [
   { name: 'PIAA', colour: '#7CE780' },
@@ -24,6 +25,10 @@ const page = () => {
     compList = userInfo.competencies;
     assessmentList = userInfo.assessments;
   }
+
+  // error screen if no competency found
+  if (!compList || compList?.length === 0) return <NoCompetencyFoundError />;
+
   return (
     <div className='m-3 h-max'>
       <div className='mb-3 flex justify-around text-center'>
