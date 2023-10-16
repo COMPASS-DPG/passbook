@@ -6,11 +6,10 @@ import {
 } from '@prismaClient/userType';
 import { useEffect, useState } from 'react';
 
-import { pdfMock } from '@/mockData/pdfMock';
-
+// import { pdfMock } from '@/mockData/pdfMock';
 import { CompetencyPDFType, pdfLevelType } from '@/types/type';
 
-localStorage.setItem('myData', JSON.stringify(pdfMock));
+// localStorage.setItem('myData', JSON.stringify(pdfMock));
 
 const usePDFData = () => {
   const [userString, setUserString] = useState<UserDBSchema | undefined>();
@@ -69,7 +68,9 @@ const usePDFData = () => {
 
   useEffect(() => {
     // Perform localStorage action
-    const data = JSON.parse(localStorage.getItem('myData') || '');
+    const data = JSON.parse(localStorage.getItem('userData') || '');
+
+    // const data = JSON.parse(localStorage.getItem('myData') || '');
 
     if (data || data !== null || data !== undefined) {
       setUserString(data);

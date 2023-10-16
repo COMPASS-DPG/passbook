@@ -296,9 +296,9 @@ export const styles = StyleSheet.create({
   },
   nameKey: {
     fontFamily: 'Outfit',
-    fontWeight: 'normal',
+    fontWeight: 'medium',
     flexDirection: 'row',
-    fontSize: '9px',
+    fontSize: '11px',
     padding: '3px 0px',
   },
   nameText: {
