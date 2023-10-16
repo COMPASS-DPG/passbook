@@ -13,14 +13,11 @@ RUN npm install
 # Copy the rest of the application code to the container
 COPY . .
 
-# Generate Prisma client code
-RUN npx prisma generate
-
 # Build the Next.js application
 RUN npm run build
 
 # Expose the port on which your Next.js app will run (for example, 3000)
 EXPOSE 3000
 
-# Start the Next.js app
-CMD ["npm", "start"]
+# Add npx prisma generate command before starting the app
+CMD ["sh", "-c", "npx prisma generate && npm start"]

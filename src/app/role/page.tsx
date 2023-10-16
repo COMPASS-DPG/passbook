@@ -56,9 +56,9 @@ const Page = () => {
         };
       });
       setFinalRoles(resultRoles);
-      localStorage.setItem('userRole', JSON.stringify(finalRoles));
+      localStorage.setItem('userRole', JSON.stringify(resultRoles));
     }
-  }, [finalRoles]);
+  }, [setFinalRoles]);
 
   if (finalRoles.length < 1) {
     return (
