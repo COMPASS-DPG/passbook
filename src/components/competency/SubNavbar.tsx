@@ -2,19 +2,17 @@
 
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
-
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { BsShare } from 'react-icons/bs';
+import { LuDownload } from 'react-icons/lu';
 
 import NavBarLink from '@/components/competency/NavBarLink';
 import DownloadFailError from '@/components/errorScreen/DownloadFailError';
 import ErrorModal from '@/components/errorScreen/ErrorModal';
 import { outfit } from '@/components/FontFamily';
-
 import PassbookPdfDownload from '@/components/Pdf/PassbookPdfDownload';
 import usePDFData from '@/components/Pdf/usePdfData';
-
 
 const SubNavbar = () => {
   // to show pdf download error

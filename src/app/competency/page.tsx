@@ -8,8 +8,7 @@ import { AssessmentTypesWithColour } from '@utils/consts';
 import React from 'react';
 
 import CompetencyAccordion from '@/components/competency/competencies/CompetencyAccordion';
-import NoCompetencyAssignError from '@/components/errorScreen/NoCompetencyAssignError';
-
+import NoCompetencyFoundError from '@/components/errorScreen/NoCompetencyFoundError';
 
 const page = () => {
   const userData = localStorage.getItem('userData');
