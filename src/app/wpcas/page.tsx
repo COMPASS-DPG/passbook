@@ -6,16 +6,23 @@ import {
   UserDBSchema,
 } from '@prismaClient/userType';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import WpcasAccordion from '@/components/competency/wpcas/WpcasAccordion';
 import NoCompetencyAssignError from '@/components/errorScreen/NoCompetencyAssignError';
 import { outfit } from '@/components/FontFamily';
 
-import survey from '../../../public/svg/survey.png';
+import survey from '~/svg/Survey.png';
 
 const Wpcas = () => {
-  const userData = localStorage.getItem('userData');
+  const [userData, setUserData] = useState('');
+
+  useEffect(() => {
+    const data = localStorage.getItem('userData') || '';
+    if (data !== '') {
+      setUserData(data);
+    }
+  }, [userData]);
 
   let feedbackList: FeedbackDBSchema[] = [];
   let userCompetency: CompetencyDBSchema[] = [];
@@ -26,7 +33,7 @@ const Wpcas = () => {
     certificateId: '',
   };
   // let assessmentList: AssessmentDBSchema[] = [];
-  if (userData !== null) {
+  if (userData !== '') {
     const userInfo: UserDBSchema = JSON.parse(userData);
     userCompetency = userInfo.competencies;
     feedbackList = userInfo.feedbacks;

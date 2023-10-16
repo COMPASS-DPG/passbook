@@ -6,6 +6,7 @@ const nextConfig = {
   },
 
   reactStrictMode: true,
+  output: 'standalone',
   swcMinify: true,
 
   // Uncoment to add domain whitelist

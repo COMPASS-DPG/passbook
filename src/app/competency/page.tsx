@@ -5,16 +5,23 @@ import {
   UserDBSchema,
 } from '@prismaClient/userType';
 import { AssessmentTypesWithColour } from '@utils/consts';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CompetencyAccordion from '@/components/competency/competencies/CompetencyAccordion';
 import NoCompetencyFoundError from '@/components/errorScreen/NoCompetencyFoundError';
 
-const page = () => {
-  const userData = localStorage.getItem('userData');
+const Page = () => {
+  const [userData, setUserData] = useState('');
+
+  useEffect(() => {
+    const data = localStorage.getItem('userData') || '';
+    if (data !== '') {
+      setUserData(data);
+    }
+  }, [userData]);
   let compList: CompetencyDBSchema[] = [];
   let assessmentList: AssessmentDBSchema[] = [];
-  if (userData !== null) {
+  if (userData !== '') {
     const userInfo: UserDBSchema = JSON.parse(userData);
     compList = userInfo.competencies;
     assessmentList = userInfo.assessments;
@@ -57,4 +64,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
