@@ -4,17 +4,12 @@ import {
   CompetencyDBSchema,
   UserDBSchema,
 } from '@prismaClient/userType';
+import { AssessmentTypesWithColour } from '@utils/consts';
 import React from 'react';
 
 import CompetencyAccordion from '@/components/competency/competencies/CompetencyAccordion';
-import NoCompetencyFoundError from '@/components/errorScreen/NoCompetencyFoundError';
+import NoCompetencyAssignError from '@/components/errorScreen/NoCompetencyAssignError';
 
-const AssessmentTypes = [
-  { name: 'PIAA', colour: '#7CE780' },
-  { name: 'CBP', colour: '#FEF08A' },
-  { name: 'SELF', colour: '#FB923C' },
-  { name: 'NONE', colour: '#E5E7EB' },
-];
 
 const page = () => {
   const userData = localStorage.getItem('userData');
@@ -32,7 +27,7 @@ const page = () => {
   return (
     <div className='m-3 h-max'>
       <div className='mb-3 flex justify-around text-center'>
-        {AssessmentTypes.map((assessmentType) => {
+        {AssessmentTypesWithColour.map((assessmentType) => {
           return (
             <div key={assessmentType.name} className='flex'>
               <svg

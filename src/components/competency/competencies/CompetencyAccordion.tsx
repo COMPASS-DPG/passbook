@@ -44,14 +44,14 @@ const CompetencyAccordion: React.FC<CompetencyAccordionProps> = ({
     assessments.map((assessment) => {
       if (
         assessment.competency === competency.name &&
-        assessment.level === level.number
+        assessment.levelNumber === level.levelNumber
       ) {
         if (
-          ASSESSMENTORDER[assessment.type] >
+          ASSESSMENTORDER[assessment.assessmentType] >
           ASSESSMENTORDER[resultAssessment.assessmentType]
         ) {
           resultAssessment = {
-            assessmentType: assessment.type,
+            assessmentType: assessment.assessmentType,
             certificate: assessment.certificateId,
             dateOfIssuance: assessment.dateOfIssuance,
           };
@@ -60,7 +60,7 @@ const CompetencyAccordion: React.FC<CompetencyAccordionProps> = ({
     });
     return {
       name: level.name,
-      levelNumber: level.number,
+      levelNumber: level.levelNumber,
       assesstmentType: resultAssessment.assessmentType,
       dateOfIssuance: resultAssessment.dateOfIssuance,
       certificateId: resultAssessment.certificate,

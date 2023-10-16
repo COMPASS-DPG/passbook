@@ -9,8 +9,6 @@ import {
 import { addRolesSchema } from '@prismaClient/userType';
 import { NextRequest, NextResponse } from 'next/server';
 
-//#FIXME: have to remove this
-
 export async function GET(req: NextRequest) {
   try {
     const userId = req.nextUrl.searchParams.get('userId');
@@ -87,7 +85,6 @@ export async function POST(req: NextRequest) {
         const { name, team, phone, designation } = await fetchUserById(userId);
         await addUserInfo(userId, name, team, phone, designation);
         // console.log("user info of user has been updated")
-        // FIXME: have to change with the services
         const rolesAndCompetency: { roles: addRolesSchema[] } =
           await fetchRolesFromFrac();
         await addRolesAndCompetency(userId, rolesAndCompetency.roles);

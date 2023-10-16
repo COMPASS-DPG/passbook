@@ -14,13 +14,11 @@ import levelIcon from '../../../../public/images/levelIcon.png';
 import { LevelWithFeedbackData } from '@/types/type';
 
 interface WPCASAccordionProps {
-  key: number;
   userCompetency: CompetencyDBSchema;
   feedbackCompetency: feedbackCompetencies | null;
 }
 
 const WpcasAccordion: React.FC<WPCASAccordionProps> = ({
-  key: key,
   userCompetency: userCompetency,
   feedbackCompetency: feedbackCompetency,
 }) => {
@@ -28,7 +26,7 @@ const WpcasAccordion: React.FC<WPCASAccordionProps> = ({
   userCompetency?.levels?.map((userLevel) => {
     const wpcasLevel = {
       name: userLevel.name,
-      levelNumber: userLevel.number,
+      levelNumber: userLevel.levelNumber,
       score: '--',
     };
     feedbackCompetency?.levels.map((feedbackLevel) => {
@@ -42,7 +40,6 @@ const WpcasAccordion: React.FC<WPCASAccordionProps> = ({
 
   return (
     <CustomAccordion
-      key={key}
       title={userCompetency.name}
       status='Competency'
       levels={[]}

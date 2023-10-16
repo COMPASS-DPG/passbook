@@ -44,7 +44,7 @@ type Competency {
 
 type Level {
   id Int
-  number Int
+  levelNumber Int
   name String
 }
 
@@ -52,11 +52,11 @@ type Level {
 type Assessment {
   competencyId Int
   competency String
-  level Int
-  type AssessmentType
+  levelNumber Int
+  assessmentType AssessmentType
   score String?
   certificateId String
-  dateOfIssuance String?
+  dateOfIssuance String
 }
 
 enum AssessmentType {
@@ -69,6 +69,19 @@ type Feedback {
   dateOfSurveyScore String
   certificateId String
   overallScore Int
-  competencies Json
+  competencies feedbackCompetency[]
+}
+
+type feedbackCompetency {
+  id Int
+  name String
+  levels feedbackLevel[]
+}
+
+type feedbackLevel {
+  id Int?
+  name String
+  levelNumber Int
+  score String
 }
 

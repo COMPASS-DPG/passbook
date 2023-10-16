@@ -17,14 +17,15 @@ export type addRolesSchema = {
 export type addAssessmentSchema = {
   competencyId: number;
   competency: string;
-  level: number;
-  type: 'PIAA' | 'SELF' | 'CBP';
+  levelId?: number;
+  levelNumber: number;
+  assessmentType: 'PIAA' | 'SELF' | 'CBP';
   score: string;
   certificateId: string;
   dateOfIssuance: string;
 };
 
-export type addFeedback = {
+export type addFeedbackSchema = {
   dateOfSurveyScore: string;
   certificateId: string;
   overallScore: number;
@@ -38,7 +39,7 @@ export type feedbackCompetencies = {
     name: string;
     id?: number;
     levelNumber: number;
-    score: number;
+    score: string;
   }[];
 };
 
@@ -60,7 +61,7 @@ export type CompetencyDBSchema = {
 
 export type LevelDBSchema = {
   id: number;
-  number: number;
+  levelNumber: number;
   name: string;
 };
 
@@ -82,18 +83,13 @@ export type UserDBSchema = {
 export type AssessmentDBSchema = {
   competencyId: number;
   competency: string;
-  level: number;
-  type: AssessmentType;
-  score: string;
+  levelId?: number;
+  levelNumber: number;
+  assessmentType: 'PIAA' | 'CBP' | 'SELF';
+  score?: string | null;
   certificateId: string;
   dateOfIssuance: string;
 };
-
-enum AssessmentType {
-  PIAA = 'PIAA',
-  CBP = 'CBP',
-  SELF = 'SELF',
-}
 
 export type FeedbackDBSchema = {
   dateOfSurveyScore: string;
