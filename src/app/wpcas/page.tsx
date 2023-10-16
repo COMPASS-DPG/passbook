@@ -18,7 +18,7 @@ const Wpcas = () => {
   const userData = localStorage.getItem('userData');
 
   let feedbackList: FeedbackDBSchema[] = [];
-  let userCompentecy: CompetencyDBSchema[] = [];
+  let userCompetency: CompetencyDBSchema[] = [];
   let feedback: FeedbackDBSchema = {
     overallScore: '--',
     dateOfSurveyScore: '',
@@ -28,7 +28,7 @@ const Wpcas = () => {
   // let assessmentList: AssessmentDBSchema[] = [];
   if (userData !== null) {
     const userInfo: UserDBSchema = JSON.parse(userData);
-    userCompentecy = userInfo.competencies;
+    userCompetency = userInfo.competencies;
     feedbackList = userInfo.feedbacks;
     if (feedbackList.length > 0) {
       feedback = feedbackList[feedbackList.length - 1];
@@ -84,24 +84,19 @@ const Wpcas = () => {
           </h6>
         </div>
       </div>
-      {userCompentecy.length > 0 ? (
-        userCompentecy.map((competency: CompetencyDBSchema, i: number) => {
+      {userCompetency && userCompetency?.length !== 0 ? (
+        userCompetency?.map((competency, i) => {
           return (
-            <div key={i}>
-              <WpcasAccordion
-                userCompetency={competency}
-                feedbackCompetency={filterFeedbackCompetency(competency)}
-              />
-            </div>
+            <WpcasAccordion
+              key={i}
+              userCompetency={competency}
+              feedbackCompetency={filterFeedbackCompetency(competency)}
+            />
           );
         })
       ) : (
-        <div>
-          {' '}
-          <NoCompetencyAssignError />{' '}
-        </div>
+        <NoCompetencyAssignError />
       )}
-      {}
     </div>
   );
 };

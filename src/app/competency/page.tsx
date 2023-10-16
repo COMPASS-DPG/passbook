@@ -10,6 +10,7 @@ import React from 'react';
 import CompetencyAccordion from '@/components/competency/competencies/CompetencyAccordion';
 import NoCompetencyAssignError from '@/components/errorScreen/NoCompetencyAssignError';
 
+
 const page = () => {
   const userData = localStorage.getItem('userData');
   let compList: CompetencyDBSchema[] = [];
@@ -19,13 +20,10 @@ const page = () => {
     compList = userInfo.competencies;
     assessmentList = userInfo.assessments;
   }
-  if (compList.length < 1) {
-    return (
-      <div>
-        <NoCompetencyAssignError />
-      </div>
-    );
-  }
+
+  // error screen if no competency found
+  if (!compList || compList?.length === 0) return <NoCompetencyFoundError />;
+
   return (
     <div className='m-3 h-max'>
       <div className='mb-3 flex justify-around text-center'>

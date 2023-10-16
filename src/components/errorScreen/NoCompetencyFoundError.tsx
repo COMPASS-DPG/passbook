@@ -7,8 +7,8 @@ import NotFoundLogo from '~/svg/notFoundLogo.svg';
 const NoCompetencyFoundError = () => {
   return (
     <div className='mt-[80px] text-center'>
-      <div className='item-center mb-3 flex justify-center'>
-        <NotFoundLogo className='w-[80px]' />
+      <div className='mb-3 flex items-center justify-center'>
+        <NotFoundLogo className='w-[150px]' />
       </div>
       <div
         className={`text-base font-normal 
