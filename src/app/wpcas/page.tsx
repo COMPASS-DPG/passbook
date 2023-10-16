@@ -41,10 +41,6 @@ const Wpcas = () => {
     const feedbackCompetency = feedback.competencies.filter((compObj) => {
       return competency.name === compObj.name;
     });
-    // console.log("!!!!!!!")
-    // console.log(competency)
-    // console.log(feedbackCompetency)
-    // console.log("!!!!!!!")
     if (feedbackCompetency.length > 0) return feedbackCompetency[0];
     return null;
   };

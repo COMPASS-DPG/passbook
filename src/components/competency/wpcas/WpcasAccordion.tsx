@@ -28,7 +28,7 @@ const WpcasAccordion: React.FC<WPCASAccordionProps> = ({
   userCompetency?.levels?.map((userLevel) => {
     const wpcasLevel = {
       name: userLevel.name,
-      levelNumber: userLevel.number,
+      levelNumber: userLevel.levelNumber,
       score: '--',
     };
     feedbackCompetency?.levels.map((feedbackLevel) => {

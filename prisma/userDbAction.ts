@@ -1,6 +1,14 @@
+import filterDistinctCompetencies from '@utils/FilterDistinctCompetencies';
+
 import prisma from './prisma';
-import * as userType from './userType';
-import { addRolesSchema, CompetencyDBSchema } from './userType';
+import {
+  addAssessmentSchema,
+  addFeedbackSchema,
+  addRolesSchema,
+  AssessmentDBSchema,
+  CompetencyDBSchema,
+  RoleDBSchema,
+} from './userType';
 
 export const fetchUser = async (userUUId: string) => {
   const user = await prisma.user.findUnique({
@@ -8,7 +16,6 @@ export const fetchUser = async (userUUId: string) => {
       userId: userUUId,
     },
   });
-
   if (user) {
     return user;
   } else {
@@ -64,27 +71,13 @@ export const addUserInfo = async (
   }
 };
 
-const filterDistinctCompetencies = (
-  competencyArray: CompetencyDBSchema[]
-): CompetencyDBSchema[] => {
-  const distinctCompetencies: CompetencyDBSchema[] = [];
-  const seenIds: Set<number> = new Set();
-
-  competencyArray.forEach((competency) => {
-    if (!seenIds.has(competency.id)) {
-      distinctCompetencies.push(competency);
-      seenIds.add(competency.id);
-    }
-  });
-  return distinctCompetencies;
-};
 export const addRolesAndCompetency = async (
   userId: string,
   roles: addRolesSchema[]
 ) => {
   const user = await fetchUser(userId);
-  const competenciesResult: userType.CompetencyDBSchema[] = [];
-  const roleResult: userType.RoleDBSchema[] = [];
+  const competenciesResult: CompetencyDBSchema[] = [];
+  const roleResult: RoleDBSchema[] = [];
 
   roles.map((role) => {
     // for counting how many total assessments are needed per roles
@@ -117,7 +110,7 @@ export const addRolesAndCompetency = async (
 
 export const addAssessment = async (
   userId: string,
-  assessmentInfo: userType.addAssessmentSchema
+  assessmentInfo: addAssessmentSchema
 ) => {
   const userInfo = await fetchUser(userId);
   if (userInfo) {
@@ -146,7 +139,7 @@ export const addAssessment = async (
 
 export const removeAssessment = async (
   userId: string,
-  assessmentInfo: userType.addAssessmentSchema
+  assessmentInfo: addAssessmentSchema
 ) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -154,14 +147,13 @@ export const removeAssessment = async (
       userId: userId,
     },
   });
-  const userObject = user;
-  const oldAssessments = userObject?.assessments;
+  const oldAssessments: AssessmentDBSchema[] | undefined = user?.assessments;
   if (oldAssessments) {
     const newAssessments = oldAssessments.filter((obj) => {
       return (
         obj.competencyId !== assessmentInfo.competencyId ||
-        obj.level !== assessmentInfo.level ||
-        obj.type !== assessmentInfo.type
+        obj.levelNumber !== assessmentInfo.levelNumber ||
+        obj.assessmentType !== assessmentInfo.assessmentType
       );
     });
     await prisma.user.update({
@@ -177,7 +169,7 @@ export const removeAssessment = async (
 
 export const addFeedback = async (
   userId: string,
-  feedback: userType.addFeedback
+  feedback: addFeedbackSchema
 ) => {
   // const user = await fetchUser(userId);
   const userObj = await prisma.user.update({

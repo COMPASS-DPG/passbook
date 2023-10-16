@@ -27,8 +27,8 @@ export async function POST(req: NextRequest) {
       await addAssessment(userId, {
         competencyId: competencyId,
         competency: competency,
-        level: level,
-        type: type,
+        levelNumber: level,
+        assessmentType: type,
         score: score,
         certificateId: certificateId,
         dateOfIssuance: dateOfIssuance,

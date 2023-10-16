@@ -18,7 +18,8 @@
       "@/*": ["./src/*"],
       "~/*": ["./public/*"],
       "@prismaClient/*": ["./prisma/*"],
-      "@mock/*": ["./mockService/*"]
+      "@mock/*": ["./mockService/*"],
+      "@utils/*": ["./utils/*"]
     },
     "incremental": true,
     "plugins": [

@@ -64,12 +64,12 @@ const Pdf = () => {
       };
       userAssessments.map((assessObj) => {
         if (
-          ASSESSMENTORDER[assessObj.type] >
+          ASSESSMENTORDER[assessObj.assessmentType] >
             ASSESSMENTORDER[pdfLevel.assessmentType || 'NONE'] &&
           assessObj.competencyId === userCompetency.id &&
-          assessObj.level === levelObj.number
+          assessObj.levelNumber === levelObj.levelNumber
         ) {
-          pdfLevel['assessmentType'] = assessObj.type;
+          pdfLevel['assessmentType'] = assessObj.assessmentType;
           pdfLevel['date'] = assessObj.dateOfIssuance;
           pdfLevel['percentage'] = assessObj.score;
         }
