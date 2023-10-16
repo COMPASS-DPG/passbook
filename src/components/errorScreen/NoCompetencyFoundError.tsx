@@ -2,7 +2,7 @@ import React from 'react';
 
 import { outfit } from '@/components/FontFamily';
 
-import NotFoundLogo from '~/svg/notFoundLogo.svg';
+import NotFoundLogo from '~/svg/NotFoundLogo.svg';
 
 const NoCompetencyFoundError = () => {
   return (

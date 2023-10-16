@@ -5,7 +5,7 @@ import React from 'react';
 import TextButton from '@/components/buttons/TextButton';
 import { outfit } from '@/components/FontFamily';
 
-import NotFoundIcon from '~/svg/notFoundIcon.svg';
+import NotFoundIcon from '~/svg/NotFoundIcon.svg';
 
 // pass this component in ErrorModal as children
 const Page = () => {

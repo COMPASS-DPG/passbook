@@ -12,7 +12,7 @@ import WpcasAccordion from '@/components/competency/wpcas/WpcasAccordion';
 import NoCompetencyAssignError from '@/components/errorScreen/NoCompetencyAssignError';
 import { outfit } from '@/components/FontFamily';
 
-import survey from '../../../public/svg/survey.png';
+import survey from '~/svg/Survey.png';
 
 const Wpcas = () => {
   const [userData, setUserData] = useState('');
