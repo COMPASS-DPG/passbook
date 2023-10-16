@@ -79,24 +79,6 @@ const Pdf = () => {
     pdfData.push(pdfCompetency);
   });
 
-  //{ //pdfData
-  //       competency: 'Pregnancy Identification',
-  //       levels: [
-  //         {
-  //           level: 'Administers TD/booster as per lorem ipsum',
-  //           assessmentType: 'Not done',
-  //           date: '18/12/2023',
-  //           percentage: '68%',
-  //         },
-  //       ],
-  //     }
-  // console.log(userCompetencies)
-  // console.log(pdfFeedback)
-  // console.log(pdfData)
-  // if (typeof window !== 'undefined') {
-  //     // Use React PDF
-  //     const blob = await pdf(<MyDocument />).toBlob();
-  // }
   return (
     <div
       style={{

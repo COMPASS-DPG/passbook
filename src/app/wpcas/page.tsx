@@ -9,6 +9,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import WpcasAccordion from '@/components/competency/wpcas/WpcasAccordion';
+import NoCompetencyAssignError from '@/components/errorScreen/NoCompetencyAssignError';
 import { outfit } from '@/components/FontFamily';
 
 import survey from '../../../public/svg/survey.png';
@@ -83,15 +84,24 @@ const Wpcas = () => {
           </h6>
         </div>
       </div>
-      {userCompentecy.map((competency, i) => {
-        return (
-          <WpcasAccordion
-            key={i}
-            userCompetency={competency}
-            feedbackCompetency={filterFeedbackCompetency(competency)}
-          />
-        );
-      })}
+      {userCompentecy.length > 0 ? (
+        userCompentecy.map((competency: CompetencyDBSchema, i: number) => {
+          return (
+            <div key={i}>
+              <WpcasAccordion
+                userCompetency={competency}
+                feedbackCompetency={filterFeedbackCompetency(competency)}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <div>
+          {' '}
+          <NoCompetencyAssignError />{' '}
+        </div>
+      )}
+      {}
     </div>
   );
 };

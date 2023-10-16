@@ -41,6 +41,7 @@ export default function HomePage() {
         // Handle any errors that occur during the API call
         // eslint-disable-next-line no-console
         console.error('API call error:', error);
+        router.push('/error/DataNotFound');
       });
   });
 
@@ -56,10 +57,6 @@ export default function HomePage() {
             Loading Your Passbook...
           </p>
         </div>
-        {/*<div>*/}
-        {/*  Hi*/}
-        {/*  <PassbookPdf />*/}
-        {/*</div>*/}
       </section>
     </main>
   );

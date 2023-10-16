@@ -1,12 +1,9 @@
 'use client';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useRouter } from 'next/navigation';
 import { BsShare } from 'react-icons/bs';
-import { LuDownload } from 'react-icons/lu';
 
 import NavBarLink from '@/components/competency/NavBarLink';
 import { outfit } from '@/components/FontFamily';
-import PassbookPdf from '@/components/Pdf/PassbookPdf';
 
 const SubNavbar = () => {
   const router = useRouter();
@@ -24,18 +21,18 @@ const SubNavbar = () => {
           >
             <BsShare size={24} />
           </button>
-          <PDFDownloadLink document={<PassbookPdf />} fileName='form'>
-            {({ loading }) =>
-              !loading && (
-                <button
-                  className='flex h-10 w-10 items-center justify-center
-              rounded-md   bg-[#385B8B]'
-                >
-                  <LuDownload size={24} />
-                </button>
-              )
-            }
-          </PDFDownloadLink>
+          {/*<PDFDownloadLink document={<PassbookPdf />} fileName='form'>*/}
+          {/*  {({ loading }) =>*/}
+          {/*    !loading && (*/}
+          {/*      <button*/}
+          {/*        className='flex h-10 w-10 items-center justify-center*/}
+          {/*    rounded-md   bg-[#385B8B]'*/}
+          {/*      >*/}
+          {/*        <LuDownload size={24} />*/}
+          {/*      </button>*/}
+          {/*    )*/}
+          {/*  }*/}
+          {/*</PDFDownloadLink>*/}
         </div>
       </div>
       <nav className='mx-[10px]  p-[10px] '>
