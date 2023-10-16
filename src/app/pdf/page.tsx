@@ -70,8 +70,8 @@ const Pdf = () => {
           assessObj.levelNumber === levelObj.levelNumber
         ) {
           pdfLevel['assessmentType'] = assessObj.assessmentType;
-          pdfLevel['date'] = assessObj.dateOfIssuance;
-          pdfLevel['percentage'] = assessObj.score;
+          pdfLevel['date'] = assessObj.dateOfIssuance || pdfLevel['date'];
+          pdfLevel['percentage'] = assessObj.score || pdfLevel['percentage'];
         }
       });
       pdfCompetency.levels.push(pdfLevel);
