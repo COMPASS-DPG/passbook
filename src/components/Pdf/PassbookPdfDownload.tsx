@@ -65,7 +65,7 @@ const PassbookPdfDownload: React.FC<PassbookPdfProps> = ({
           <View style={styles.dataAndPercentageContainer}>
             <View style={styles.percentageContainer}>
               <Text style={styles.percentageText}>
-                {pdfFeedback?.overallScore}
+                {pdfFeedback?.overallScore}%
               </Text>
               <Text style={styles.aggregateText}>Aggregate %</Text>
             </View>
