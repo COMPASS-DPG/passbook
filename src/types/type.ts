@@ -46,3 +46,12 @@ export type LevelWithFeedbackData = {
 export type ChildrenType = {
   children: React.ReactNode;
 };
+
+export type SurveyType = {
+  id: string;
+  name: string;
+  role: string;
+  providedFeedback: boolean;
+  getFeedback: boolean;
+  questions: string[];
+};

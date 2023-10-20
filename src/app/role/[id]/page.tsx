@@ -1,17 +1,15 @@
 'use client';
-import { useRouter } from 'next/navigation';
+
 import React from 'react';
-import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 
+import BackButtonNav from '@/components/competency/BackButtonNav';
 import RoleAccordion from '@/components/competency/role/RoleAccordion';
 import { outfit, poppins } from '@/components/FontFamily';
 
 import { CompetencyType, RoleDataType } from '@/types/type';
 
 const RoleDetails = ({ params }: { params: { id: string } }) => {
-  const router = useRouter();
-
   const rolesData = localStorage.getItem('userRole');
   let data: RoleDataType = {
     id: 0,
@@ -28,24 +26,10 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
     data = rolesList[0];
   }
 
-  const handleBack = () => {
-    router.back();
-  };
-
   return (
     <div className={`${outfit.className} w-full`}>
-      <div className='flex items-center px-[22px] py-1.5'>
-        <button
-          className='mr-[15px] flex h-11 w-11 cursor-pointer 
-        items-center justify-center rounded-md border-2 
-        border-solid border-gray-200 hover:bg-gray-100'
-          onClick={handleBack}
-        >
-          <MdOutlineKeyboardArrowLeft size={28} />
-        </button>
-        <div className='text-xl font-semibold'>Roles</div>
-      </div>
-      <div className='p-[22px]'>
+      <BackButtonNav heading='Roles' />
+      <div className='px-[22px] pt-[75px]'>
         <div>
           <p
             className={`pb-2.5 text-sm font-medium  
@@ -85,6 +69,7 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
             })}
           </div>
         </div>
+        <div style={{ height: '1200px' }}></div>
       </div>
     </div>
   );

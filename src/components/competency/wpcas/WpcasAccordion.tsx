@@ -87,7 +87,13 @@ const WpcasAccordion: React.FC<WPCASAccordionProps> = ({
                     <td className={`py-3 ${outfit.className} text-sm`}>
                       {level.name}
                     </td>
-                    <td className='px-2 text-right font-semibold'>
+                    <td
+                      className={`px-2 text-right font-semibold ${
+                        parseInt(level.score) >= 60
+                          ? 'text-[#4ACB5F]'
+                          : 'text-red-500'
+                      } `}
+                    >
                       {' '}
                       {level.score}
                     </td>

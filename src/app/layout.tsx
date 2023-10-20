@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
 import * as React from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ConnectionCheckWrapper from '@/components/errorScreen/ConnectionCheckWrapper';
 
@@ -59,6 +61,18 @@ export default function RootLayout({
     <html>
       <body>
         <ConnectionCheckWrapper>{children}</ConnectionCheckWrapper>
+        <ToastContainer
+          position='top-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='colored'
+        />
       </body>
     </html>
   );
