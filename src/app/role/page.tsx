@@ -70,7 +70,7 @@ const Page = () => {
 
   return (
     <>
-      {finalRoles.map((item, i) => {
+      {finalRoles?.map((item, i) => {
         return (
           <Link key={i} href={`role/${item.id}`}>
             <RoleCard data={item} />

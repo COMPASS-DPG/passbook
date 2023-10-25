@@ -32,7 +32,7 @@ const RoleAccordion = ({ data }: ChildProps) => {
         </div>
         <div>
           <ul className='list-disc pl-4 text-sm font-normal text-[#272728]'>
-            {data.levels.map((level, i) => (
+            {data?.levels?.map((level, i) => (
               <li key={i} className='pb-4'>
                 {level}
               </li>

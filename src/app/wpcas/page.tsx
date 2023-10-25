@@ -6,7 +6,6 @@ import {
   UserDBSchema,
 } from '@prismaClient/userType';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import WpcasAccordion from '@/components/competency/wpcas/WpcasAccordion';
@@ -17,7 +16,6 @@ import survey from '~/svg/Survey.png';
 
 const Wpcas = () => {
   const [userData, setUserData] = useState('');
-  const router = useRouter();
 
   useEffect(() => {
     const data = localStorage.getItem('userData') || '';
@@ -75,10 +73,7 @@ const Wpcas = () => {
             </p>
           </div>
         </div>
-        <div
-          className='right relative w-2/5 cursor-pointer rounded-lg border-blue-900 bg-blue-200'
-          onClick={() => router.push('wpcas-survey')}
-        >
+        <div className='right relative w-2/5 cursor-pointer rounded-lg border-blue-900 bg-blue-200'>
           <div className='absolute -right-1 -top-2 h-5 w-5 rounded-full bg-red-600 text-center font-semibold text-white'>
             {/*2*/}
           </div>
