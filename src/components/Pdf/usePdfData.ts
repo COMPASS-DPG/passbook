@@ -27,12 +27,14 @@ const usePDFData = () => {
   const userAssessments: AssessmentDBSchema[] | undefined =
     userData?.assessments;
   const pdfFeedback: FeedbackDBSchema | undefined =
-    userData?.feedbacks?.pop() || {
-      dateOfSurveyScore: '--',
-      certificateId: '--',
-      overallScore: '--',
-      competencies: [],
-    };
+    userData?.feedbacks?.length || -1 > 0
+      ? userData?.feedbacks[userData?.feedbacks.length - 1]
+      : {
+          dateOfSurveyScore: '--',
+          certificateId: '--',
+          overallScore: '--',
+          competencies: [],
+        };
 
   const pdfData: CompetencyPDFType[] = [];
 
@@ -48,6 +50,7 @@ const usePDFData = () => {
         date: '--',
         percentage: '--',
         level: levelObj?.name,
+        certificateId: '',
       };
       userAssessments?.map((assessObj) => {
         if (
@@ -56,9 +59,20 @@ const usePDFData = () => {
           assessObj?.competencyId === userCompetency?.id &&
           assessObj?.levelNumber === levelObj?.levelNumber
         ) {
-          pdfLevel['assessmentType'] = assessObj?.assessmentType;
-          pdfLevel['date'] = assessObj?.dateOfIssuance;
-          pdfLevel['percentage'] = assessObj?.score || '--';
+          pdfLevel.assessmentType = assessObj?.assessmentType;
+          pdfLevel.date = assessObj?.dateOfIssuance;
+          // pdfLevel.percentage = assessObj?.score || '--'; will come from wpcase score
+          pdfLevel.certificateId = assessObj?.certificateId || '';
+        }
+      });
+      // adding score for the competency and level wise
+      pdfFeedback?.competencies.map((feedbackCompetency) => {
+        if (feedbackCompetency.name === userCompetency.name) {
+          feedbackCompetency.levels.map((feedbackLevel) => {
+            if (feedbackLevel.levelNumber === levelObj.levelNumber) {
+              pdfLevel.percentage = feedbackLevel.score;
+            }
+          });
         }
       });
       pdfCompetency?.levels?.push(pdfLevel);

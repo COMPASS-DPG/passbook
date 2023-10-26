@@ -69,9 +69,7 @@ const TableComponent = ({ data, index }: PropType) => {
                 </View>
               </View>
               <View style={styles.listPercentageContainer}>
-                <Text style={styles.listPercentage}>
-                  {data.assessmentType == 'NONE' ? '' : data?.percentage}
-                </Text>
+                <Text style={styles.listPercentage}>{data?.percentage}</Text>
               </View>
             </View>
           );

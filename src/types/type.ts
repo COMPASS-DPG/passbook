@@ -8,6 +8,7 @@ export type pdfLevelType = {
   level: string;
   assessmentType: 'PIAA' | 'CBP' | 'SELF' | 'NONE';
   date?: string;
+  certificateId: string;
 };
 
 export type CompetencyPDFType = {
