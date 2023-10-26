@@ -59,7 +59,7 @@ const CustomAccordion = ({
             Levels
           </p>
           <div className='flex flex-row gap-x-0.5'>
-            {levels.map((level, index) => {
+            {levels?.map((level, index) => {
               return (
                 <div
                   key={`level-${index}`}

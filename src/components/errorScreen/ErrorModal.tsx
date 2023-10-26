@@ -6,9 +6,15 @@ type PropsType = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  isShowCross?: boolean;
 };
 
-const ErrorModal = ({ isOpen, onClose, children }: PropsType) => {
+const ErrorModal = ({
+  isOpen,
+  onClose,
+  children,
+  isShowCross = true,
+}: PropsType) => {
   if (!isOpen) return null;
 
   return (
@@ -20,7 +26,7 @@ const ErrorModal = ({ isOpen, onClose, children }: PropsType) => {
             className='modal-close absolute right-0 top-0 m-3'
             onClick={onClose}
           >
-            <CrossIcon className='w-6' />
+            {isShowCross && <CrossIcon className='w-6' />}
           </button>
           {children}
         </div>

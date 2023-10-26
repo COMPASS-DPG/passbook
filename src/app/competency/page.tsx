@@ -33,7 +33,7 @@ const Page = () => {
   return (
     <div className='m-3 h-max'>
       <div className='mb-3 flex justify-around text-center'>
-        {AssessmentTypesWithColour.map((assessmentType) => {
+        {AssessmentTypesWithColour?.map((assessmentType) => {
           return (
             <div key={assessmentType.name} className='flex'>
               <svg
@@ -44,14 +44,14 @@ const Page = () => {
                 viewBox='0 0 12 12'
                 fill='none'
               >
-                <circle cx='6' cy='6' r='6' fill={assessmentType.colour} />
+                <circle cx='6' cy='6' r='6' fill={assessmentType?.colour} />
               </svg>
               <h6 className='mx-1'>{assessmentType.name}</h6>
             </div>
           );
         })}
       </div>
-      {compList.map((compObj: CompetencyDBSchema) => {
+      {compList?.map((compObj: CompetencyDBSchema) => {
         return (
           <CompetencyAccordion
             key={compObj.id}
