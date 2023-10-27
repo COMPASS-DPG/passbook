@@ -20,7 +20,7 @@ const SubNavbar = () => {
 
   const router = useRouter();
 
-  const { pdfFeedback, pdfData, userName, userId } = usePDFData();
+  const { pdfFeedback, pdfData, userName, userId, certificates } = usePDFData();
 
   const handleDownload = async () => {
     try {
@@ -30,6 +30,7 @@ const SubNavbar = () => {
           pdfData={pdfData}
           userId={userId}
           userName={userName}
+          certificates={certificates}
         />
       ).toBlob();
       saveAs(blob, 'competency');

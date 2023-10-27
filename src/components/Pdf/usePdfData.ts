@@ -6,13 +6,16 @@ import {
 } from '@prismaClient/userType';
 import { useEffect, useState } from 'react';
 
-// import { pdfMock } from '@/mockData/pdfMock';
-import { CompetencyPDFType, pdfLevelType } from '@/types/type';
+import useCertificates from '@/components/Pdf/useCertificates';
 
-// localStorage.setItem('myData', JSON.stringify(pdfMock));
+import { CompetencyPDFType, pdfLevelType } from '@/types/type';
 
 const usePDFData = () => {
   const [userString, setUserString] = useState<UserDBSchema | undefined>();
+
+  // will fetch all certificates using certificateId
+  const certificates = useCertificates(userString?.assessments);
+
   const ASSESSMENTORDER = {
     PIAA: 4,
     CBP: 3,
@@ -22,6 +25,7 @@ const usePDFData = () => {
   const userName: string | undefined = userString?.name;
   const userId: string | undefined = userString?.userId;
   const userData: UserDBSchema | undefined = userString;
+  const certificateIds: string[] = [];
   const userCompetencies: CompetencyDBSchema[] | undefined =
     userData?.competencies;
   const userAssessments: AssessmentDBSchema[] | undefined =
@@ -64,9 +68,12 @@ const usePDFData = () => {
           // pdfLevel.percentage = assessObj?.score || '--'; will come from wpcase score
           pdfLevel.certificateId = assessObj?.certificateId || '';
         }
+        if (assessObj?.certificateId) {
+          certificateIds.push(assessObj?.certificateId);
+        }
       });
       // adding score for the competency and level wise
-      pdfFeedback?.competencies.map((feedbackCompetency) => {
+      pdfFeedback?.competencies?.map((feedbackCompetency) => {
         if (feedbackCompetency.name === userCompetency.name) {
           feedbackCompetency.levels.map((feedbackLevel) => {
             if (feedbackLevel.levelNumber === levelObj.levelNumber) {
@@ -97,6 +104,7 @@ const usePDFData = () => {
     userString,
     userName,
     userId,
+    certificates,
   };
 };
 
