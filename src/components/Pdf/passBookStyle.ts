@@ -154,9 +154,15 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     width: '40px',
   },
-  listPercentage: {
+  listPercentageRed: {
     fontFamily: 'Outfit',
-    color: 'black',
+    color: 'red',
+    fontSize: '9px',
+    fontWeight: 'medium',
+  },
+  listPercentageGreen: {
+    fontFamily: 'Outfit',
+    color: '#7CE780',
     fontSize: '9px',
     fontWeight: 'medium',
   },
