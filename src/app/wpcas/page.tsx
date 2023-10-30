@@ -54,7 +54,7 @@ const Wpcas = () => {
   };
   return (
     <div className='m-3 h-max'>
-      <div className='flex h-28 space-x-4 p-2'>
+      <div className='flex space-x-4 p-2'>
         <div className='left w-3/5 rounded-lg border-orange-300 bg-amber-100 p-2'>
           <div>
             <h5 className={`font-medium ${outfit.className}`}>Overall WPCAS</h5>
