@@ -2,6 +2,7 @@
 import { FeedbackDBSchema } from '@prismaClient/userType';
 import { Circle, Document, Page, Svg, Text, View } from '@react-pdf/renderer';
 import React from 'react';
+import Html from 'react-pdf-html';
 
 import TableComponent from '@/components/Pdf/CompetenciesPdfComponent';
 import { styles } from '@/components/Pdf/passBookStyle';
@@ -33,19 +34,19 @@ const NotDoneSvg = () => (
 );
 
 interface PassbookPdfProps {
-  pdfFeedback: FeedbackDBSchema;
+  pdfFeedback: FeedbackDBSchema | undefined;
   pdfData: CompetencyPDFType[];
   userName: string | undefined;
   userId: string | undefined;
+  certificates: string[];
 }
 const PassbookPdfDownload: React.FC<PassbookPdfProps> = ({
   pdfFeedback: pdfFeedback,
   pdfData: pdfData,
   userName,
   userId,
+  certificates,
 }) => {
-  // const pdfData = pdfMonk.competencies as competenciesPdfComponent[];
-
   return (
     <Document>
       <Page size='A4' style={styles.pageCss} wrap>
@@ -103,6 +104,15 @@ const PassbookPdfDownload: React.FC<PassbookPdfProps> = ({
         {pdfData?.map((competency, i) => {
           return <TableComponent key={i} data={competency} index={i} />;
         })}
+
+        {certificates?.map((item, ind) => {
+          return (
+            <View key={ind} wrap={false} style={styles.certificateContainer}>
+              <Html resetStyles>{item}</Html>
+            </View>
+          );
+        })}
+
         <Text
           style={styles.pageNumber}
           render={({ pageNumber, totalPages }) =>

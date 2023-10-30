@@ -7,6 +7,36 @@ Font.register({
 });
 
 Font.register({
+  family: 'Lato',
+  fonts: [
+    {
+      src: '/fonts/Lato-Regular.ttf',
+      fontWeight: 400,
+    },
+    {
+      src: '/fonts/Lato-Italic.ttf',
+      fontWeight: 400,
+      fontStyle: 'italic',
+    },
+  ],
+});
+
+Font.register({
+  family: 'Times New Roman',
+  src: '/fonts/times.ttf',
+});
+
+Font.register({
+  family: 'Times',
+  src: '/fonts/times.ttf',
+});
+
+Font.register({
+  family: 'Lucida Handwriting',
+  src: '/fonts/LucidaHandwritingStdBlack.TTF',
+});
+
+Font.register({
   family: 'Outfit',
   fonts: [
     {
@@ -23,6 +53,20 @@ Font.register({
     },
     {
       src: 'http://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NjuGObqx1XmO1I4deyC4G-EiAou6Y.ttf',
+      fontWeight: 700,
+    },
+  ],
+});
+
+Font.register({
+  family: 'Lato',
+  fonts: [
+    {
+      src: 'http://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHvxk6XweuBCY.ttf',
+      fontWeight: 400,
+    },
+    {
+      src: 'http://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVew-FGC_p9dw.ttf',
       fontWeight: 700,
     },
   ],
@@ -110,9 +154,15 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     width: '40px',
   },
-  listPercentage: {
+  listPercentageRed: {
     fontFamily: 'Outfit',
-    color: 'black',
+    color: 'red',
+    fontSize: '9px',
+    fontWeight: 'medium',
+  },
+  listPercentageGreen: {
+    fontFamily: 'Outfit',
+    color: '#7CE780',
     fontSize: '9px',
     fontWeight: 'medium',
   },
@@ -303,5 +353,8 @@ export const styles = StyleSheet.create({
   },
   nameText: {
     color: 'gray',
+  },
+  certificateContainer: {
+    marginTop: '30px',
   },
 });

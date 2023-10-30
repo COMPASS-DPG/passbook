@@ -7,7 +7,8 @@ import { styles } from '@/components/Pdf/passBookStyle';
 import usePDFData from '@/components/Pdf/usePdfData';
 
 const PassbookPdfView = () => {
-  const { pdfFeedback, pdfData, userString, userId, userName } = usePDFData();
+  const { pdfFeedback, pdfData, userString, userId, userName, certificates } =
+    usePDFData();
 
   if (!userString || userString === undefined || userString === null) {
     return (
@@ -26,6 +27,7 @@ const PassbookPdfView = () => {
           pdfData={pdfData}
           userId={userId}
           userName={userName}
+          certificates={certificates}
         />
       </PDFViewer>
     </div>
