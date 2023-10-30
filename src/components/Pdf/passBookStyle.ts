@@ -174,8 +174,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'semibold',
   },
   pdfViewer: {
-    width: '100%',
-    height: '1000px',
+    width: '100vw',
+    height: '100vw',
   },
   pageCss: {
     padding: '20px 30px',

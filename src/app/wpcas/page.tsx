@@ -69,14 +69,17 @@ const Wpcas = () => {
           </div>
           <div className='text-sm font-thin'>
             <p className={`text-gray-500 ${outfit.className}`}>
-              {`Last updated on: ${feedback.dateOfSurveyScore}`}
+              Last updated
+              <br />
+              {`${feedback.dateOfSurveyScore}`}
+              <br />
             </p>
           </div>
         </div>
         <div className='right relative w-2/5 cursor-pointer rounded-lg border-blue-900 bg-blue-200'>
-          <div className='absolute -right-1 -top-2 h-5 w-5 rounded-full bg-red-600 text-center font-semibold text-white'>
-            {/*2*/}
-          </div>
+          {/*<div className='absolute -right-1 -top-2 h-5 w-5 rounded-full bg-red-600 text-center font-semibold text-white'>*/}
+          {/*  /!*2*!/*/}
+          {/*</div>*/}
           <Image
             src={survey}
             alt='My Image'

@@ -73,7 +73,7 @@ const PassbookPdfDownload: React.FC<PassbookPdfProps> = ({
             <View style={styles.dateContainer}>
               <View style={styles.rightAlignText}>
                 <Text>
-                  PDF Generation Date: {new Date().toLocaleDateString('en-GB')}
+                  Generation Date: {new Date().toLocaleDateString('en-GB')}
                 </Text>
               </View>
               <View style={styles.rightAlignText}>
