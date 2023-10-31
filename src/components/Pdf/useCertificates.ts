@@ -10,7 +10,7 @@ const fetchData = async (id: string) => {
       `http://compass.samagra.io/credentials/${id}`,
       {
         headers: {
-          templateId: 'clo6udfum0002s73wlts7tqnz',
+          templateId: 'cloe1mlyx0006s73wq6u08e3g',
           Accept: ' text/html',
         },
       }
