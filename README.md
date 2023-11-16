@@ -1,132 +1,218 @@
-# Next.js + Tailwind CSS + TypeScript Starter and Boilerplate
+# Compass Competency Passbook
 
-<div align="center">
-  <h2>🔋 ts-nextjs-tailwind-starter</h2>
-  <p>Next.js + Tailwind CSS + TypeScript starter packed with useful development features.</p>
-  <p>Made by <a href="https://theodorusclarence.com">Theodorus Clarence</a></p>
+## Why? And What?
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/theodorusclarence/ts-nextjs-tailwind-starter)](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/stargazers)
-[![Depfu](https://badges.depfu.com/badges/fc6e730632ab9dacaf7df478a08684a7/overview.svg)](https://depfu.com/github/theodorusclarence/ts-nextjs-tailwind-starter?project_id=30160)
-[![Last Update](https://img.shields.io/badge/deps%20update-every%20sunday-blue.svg)](https://shields.io/)
+COMPASS is envisioned as a component of a goal-oriented human resource management system (GO-HRM) that will allow departments to link their goals with well-defined targets for teams and individuals, map competencies required to fulfill these targets, and link capacity to performance management. Refer to Appendix A for more details on the motivation for COMPASS.
 
-</div>
+The **competency passbook** is meant to be a repository of the competencies of a user. It is a list of all the self and PIAA assessments that the user has taken till a particular day. It would contain Course Completion Score (CCS), Proctored Independent and Authorized Assessment (PIAA) scores and certificates, Workplace Competency Assessment Scores (WPCAS) and an employee oriented analytical dashboard. It would be accessed by employees through a mobile app developed for showcasing the modules developed under COMPASS.
 
-## Features
+The following doc will talk more in details about the need and user flow of the passbook
+https://docs.google.com/document/d/1ObzSKDK3je5ZZVxCvEEabAqED8PFs5t4OEtUkxYpCtk/edit?usp=sharing
 
-This repository is 🔋 battery packed with:
+Steps To Install
 
-- ⚡️ Next.js 13 with App Router
-- ⚛️ React 18
-- ✨ TypeScript
-- 💨 Tailwind CSS 3 — Configured with CSS Variables to extend the **primary** color
-- 💎 Pre-built Components — Components that will **automatically adapt** with your brand color, [check here for the demo](https://tsnext-tw.thcl.dev/components)
-- 🃏 Jest — Configured for unit testing
-- 📈 Absolute Import and Path Alias — Import components using `@/` prefix
-- 📏 ESLint — Find and fix problems in your code, also will **auto sort** your imports
-- 💖 Prettier — Format your code consistently
-- 🐶 Husky & Lint Staged — Run scripts on your staged files before they are committed
-- 🤖 Conventional Commit Lint — Make sure you & your teammates follow conventional commit
-- ⏰ Release Please — Generate your changelog by activating the `release-please` workflow
-- 👷 Github Actions — Lint your code on PR
-- 🚘 Automatic Branch and Issue Autolink — Branch will be automatically created on issue **assign**, and auto linked on PR
-- 🔥 Snippets — A collection of useful snippets
-- 👀 Open Graph Helper Function — Awesome open graph generated using [og](https://github.com/theodorusclarence/og), fork it and deploy!
-- 🗺 Site Map — Automatically generate sitemap.xml
-- 📦 Expansion Pack — Easily install common libraries, additional components, and configs.
+1. Install docker in your system.
 
-See the 👉 [feature details and changelog](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/blob/main/CHANGELOG.md) 👈 for more.
-
-You can also check all of the **details and demos** on my blog post:
-
-- [One-stop Starter to Maximize Efficiency on Next.js & Tailwind CSS Projects](https://theodorusclarence.com/blog/one-stop-starter)
-
-## Getting Started
-
-### 1. Clone this template using one of the three ways:
-
-1. Use this repository as template
-
-   **Disclosure:** by using this repository as a template, there will be an attribution on your repository.
-
-   I'll appreciate if you do, so this template can be known by others too 😄
-
-   ![Use as template](https://user-images.githubusercontent.com/55318172/129183039-1a61e68d-dd90-4548-9489-7b3ccbb35810.png)
-
-2. Using `create-next-app`
-
+2. then Run the following commands
    ```bash
-   npx create-next-app -e https://github.com/theodorusclarence/ts-nextjs-tailwind-starter project-name
+   docker build -t passbook .
+   docker run -p 3000:3000 -d passbook
+   ```
+3. You can access the passbook on your system at
+   ```
+   http://localhost:3000/
    ```
 
-   If you still want to use **pages directory** (_is not actively maintained_) you can use this command
+# Passbook API Documentation
 
-   ```bash
-   npx create-next-app -e https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/tree/pages-directory project-name
-   ```
+## Add User Assessment
 
-3. Using `degit`
+Add an assessment for a user. This endpoint allows you to record assessment data for a specific user in the Passbook system.
 
-   ```bash
-   npx degit theodorusclarence/ts-nextjs-tailwind-starter YOUR_APP_NAME
-   ```
+### Endpoint
 
-4. Deploy to Vercel
-
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftheodorusclarence%2Fts-nextjs-tailwind-starter)
-
-### 2. Install dependencies
-
-It is encouraged to use **yarn** so the husky hooks can work properly.
-
-```bash
-yarn install
+```
+POST {{server}}/api/user/assessment
 ```
 
-### 3. Run the development server
+### Request
 
-You can start the server using this command:
+### Request Body
 
-```bash
-yarn dev
+```
+userId (string, required): The unique identifier of the user for whom you want to add an assessment.
+
+competencyId (integer, required): The identifier for the competency being assessed.
+
+competency (string, required): The name or description of the competency being assessed.
+
+levelNumber (integer, required): The level of competency being assessed.
+
+type (string, required): The type of assessment (e.g., "CBP" for Continuous Performance).
+
+score (string, required): The score achieved by the user in the assessment.
+
+certificateId (string, required): The identifier of the certificate associated with the assessment.
+
+dateOfIssuance (string, required): The date on which the assessment was issued (in YYYY-MM-DD format).
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying `src/pages/index.tsx`.
+### Example Request Body
 
-### 4. Change defaults
+json
 
-There are some things you need to change including title, urls, favicons, etc.
+```json lines
+{
+  "userId": "1246",
+  "competencyId": 1,
+  "competency": "NestJs",
+  "levelNumber": 1,
+  "type": "CBP",
+  "score": "80",
+  "certificateId": "cert-211",
+  "dateOfIssuance": "2021-12-01"
+}
+```
 
-Find all comments with !STARTERCONF, then follow the guide.
+### Response
 
-Don't forget to change the package name in package.json
+Success Response (HTTP 201 Created)
 
-### 5. Commit Message Convention
+If the assessment is added successfully, the server will respond with an HTTP status code of 201, indicating that the assessment has been created.
 
-This starter is using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), it is mandatory to use it to commit changes.
+### Error Responses
 
-## Projects using ts-nextjs-tailwind-starter
+HTTP 400 Bad Request: If the request is invalid, the server will respond with a 400 status code and an error message specifying the issue.
 
-<!--
-TEMPLATE
-- [sitename](https://sitelink.com) ([Source](https://github.com/githublink))
-- [sitename](https://sitelink.com)
--->
+HTTP 404 Not Found: If the user is not found in the system, the server will respond with a 404 status code.
 
-- [theodorusclarence.com](https://theodorusclarence.com) ([Source](https://github.com/theodorusclarence/theodorusclarence.com))
-- [Notiolink](https://notiolink.thcl.dev/) ([Source](https://github.com/theodorusclarence/notiolink))
+HTTP 500 Internal Server Error: If there is an issue on the server side, it will respond with a 500 status code.
 
-Are you using this starter? Please add your page (and repo) to the end of the list via a [Pull Request](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/edit/main/README.md). 😃
+Notes
+Make sure you have the necessary permissions and authentication to use this endpoint.
+The response will contain the unique identifier of the created assessment for future reference.
 
-## Expansion Pack 📦
+# Add User Feedback Score
 
-This starter is now equipped with an [expansion pack](https://github.com/theodorusclarence/expansion-pack).
+Add a feedback score for a user. This endpoint allows you to record feedback scores for a specific user in the Passbook system.
 
-You can easily add expansion such as React Hook Form + Components, Storybook, and more just using a single command line.
+## Endpoint
 
-https://user-images.githubusercontent.com/55318172/146631994-e1cac137-1664-4cfe-950b-a96decc1eaa6.mp4
+POST {{server}}/api/user/feedback
 
-Check out the [expansion pack repository](https://github.com/theodorusclarence/expansion-pack) for the commands
+## Request
 
-### App Router Update
+### Request Body
 
-Due to App Router update, the expansion pack is currently **outdated**. It will be updated in the future. You can still use them by copy and pasting the files.
+```text
+
+dateOfSurveyScore (string, required): The date on which the feedback survey score is recorded (in YYYY-MM-DD format).
+
+certificateId (string, required): The unique identifier of the certificate associated with the feedback.
+
+overallScore (integer, required): The overall feedback score given to the user.
+
+competencies (array, required): An array of objects representing individual competencies and their respective feedback scores.
+
+id (integer, required): The identifier for the competency being assessed.
+
+name (string, required): The name or description of the competency being assessed.
+
+levels (array, required): An array of objects representing feedback scores for different competency levels.
+
+levelNumber (integer, required): The level number of the competency being assessed.
+
+name (string, required): The name of the competency level.
+
+score (string, required): The feedback score achieved for the competency level.
+```
+
+Example Request Body
+
+```json5
+{
+  dateOfSurveyScore: '2023-10-23',
+  certificateId: 'cert-001',
+  overallScore: 85,
+  competencies: [
+    {
+      id: 1,
+      name: 'NestJs',
+      levels: [
+        {
+          levelNumber: 1,
+          name: 'Basic',
+          score: '90%',
+        },
+        {
+          levelNumber: 2,
+          name: 'Intermediate',
+          score: '80%',
+        },
+        {
+          levelNumber: 3,
+          name: 'Advanced',
+          score: '90%',
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: 'DB Modelling',
+      levels: [
+        {
+          levelNumber: 1,
+          name: 'Basic',
+          score: '90%',
+        },
+        {
+          levelNumber: 2,
+          name: 'Intermediate',
+          score: '80%',
+        },
+        {
+          levelNumber: 3,
+          name: 'Advanced',
+          score: '80%',
+        },
+      ],
+    },
+    {
+      id: 2,
+      name: 'Micro Architecture',
+      levels: [
+        {
+          levelNumber: 1,
+          name: 'Basic',
+          score: '50%',
+        },
+        {
+          levelNumber: 2,
+          name: 'Intermediate',
+          score: '40%',
+        },
+      ],
+    },
+  ],
+  userId: '1245',
+}
+```
+
+## Response
+
+Success Response (HTTP 201 Created)
+
+If the feedback score is added successfully, the server will respond with an HTTP status code of 201, indicating that the feedback score has been created.
+
+### Error Responses
+
+HTTP 400 Bad Request: If the request is invalid, the server will respond with a 400 status code and an error message specifying the issue.
+
+HTTP 404 Not Found: If the user is not found in the system, the server will respond with a 404 status code.
+
+HTTP 500 Internal Server Error: If there is an issue on the server side, it will respond with a 500 status code.
+
+### Notes
+
+Make sure you have the necessary permissions and authentication to use this endpoint.

@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   eslint: {
     dirs: ['src'],
   },
 
   reactStrictMode: true,
+  output: 'standalone',
   swcMinify: true,
 
   // Uncoment to add domain whitelist

@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_DB_URL")
+}
+
+
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique
+  name String
+  team String
+  phone String
+  designation String
+  roles Role[]
+  competencies Competency[]
+  assessments Assessment[]
+  feedbacks Feedback[]
+  created DateTime @default(now())
+  updated DateTime @updatedAt
+}
+
+type Role {
+  id Int
+  name String
+  description String
+  competencyIds Int[]
+  totalAssessment Int
+  completedAssessment Int
+}
+
+type Competency {
+  id Int
+  name String
+  levels Level[]
+}
+
+type Level {
+  id Int
+  levelNumber Int
+  name String
+}
+
+
+type Assessment {
+  competencyId Int
+  competency String
+  levelNumber Int
+  assessmentType AssessmentType
+  score String?
+  certificateId String
+  dateOfIssuance String
+}
+
+enum AssessmentType {
+  PIAA
+  CBP
+  SELF
+}
+
+type Feedback {
+  dateOfSurveyScore String
+  certificateId String
+  overallScore Int
+  competencies feedbackCompetency[]
+}
+
+type feedbackCompetency {
+  id Int
+  name String
+  levels feedbackLevel[]
+}
+
+type feedbackLevel {
+  id Int?
+  name String
+  levelNumber Int
+  score String
+}
+
