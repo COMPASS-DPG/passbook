@@ -9,6 +9,12 @@ The **competency passbook** is meant to be a repository of the competencies of a
 The following doc will talk more in details about the need and user flow of the passbook
 https://docs.google.com/document/d/1ObzSKDK3je5ZZVxCvEEabAqED8PFs5t4OEtUkxYpCtk/edit?usp=sharing
 
+Pre-Requisite:
+
+1. git clone https://github.com/COMPASS-DPG/passbook.git
+2. create a url for mongodb and change the mongodb url in .env.example (see the example of .env.example)
+3. Deploy sunbirdRc - (https://github.com/SamagraX-RCW) and change the endpoint url of crednetial in .env.example
+
 Steps To Install
 
 1. Install docker in your system.
