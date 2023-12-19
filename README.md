@@ -9,6 +9,12 @@ The **competency passbook** is meant to be a repository of the competencies of a
 The following doc will talk more in details about the need and user flow of the passbook
 https://docs.google.com/document/d/1ObzSKDK3je5ZZVxCvEEabAqED8PFs5t4OEtUkxYpCtk/edit?usp=sharing
 
+Pre-Requisite:
+
+1. git clone https://github.com/COMPASS-DPG/passbook.git
+2. create a url for mongodb and change the mongodb url in .env.example (see the example of .env.example)
+3. Deploy sunbirdRc - (https://github.com/SamagraX-RCW) and change the endpoint url of crednetial in .env.example
+
 Steps To Install
 
 1. Install docker in your system.
@@ -48,7 +54,7 @@ competency (string, required): The name or description of the competency being a
 
 levelNumber (integer, required): The level of competency being assessed.
 
-type (string, required): The type of assessment (e.g., "CBP" for Continuous Performance).
+type (string, required):(PIAA/CBP/SELF) The type of assessment (e.g., "CBP" for Continuous Performance).
 
 score (string, required): The score achieved by the user in the assessment.
 
@@ -70,7 +76,7 @@ json
   "levelNumber": 1,
   "type": "CBP",
   "score": "80",
-  "certificateId": "cert-211",
+  "certificateId": "did:ulp:711777e4-5123-41ea-a1cb-9edeb6c38282",
   "dateOfIssuance": "2021-12-01"
 }
 ```
@@ -216,3 +222,40 @@ HTTP 500 Internal Server Error: If there is an issue on the server side, it will
 ### Notes
 
 Make sure you have the necessary permissions and authentication to use this endpoint.
+
+# Creating Credential In Sunbird Rc
+
+For generating the Credential in Sunbird Rc
+These are the following step
+
+1. Create an identity for organisation/author/person
+2. Using the above created identity create a Schema mentioning the fields as properties
+3. Create a template using the html and giving variable from the schema
+4. Finally after following the above steps, we can finally issue a certificate
+5. Then given the credential Id, we can verify the credential or print the credential in template
+
+Postman collection for Main flow for all the above step
+https://api.postman.com/collections/17248210-f70fc9eb-a81d-47ee-9643-bd846869c30c?access_key=PMAT-01H59MVS7DXPSWSS2VKCCV7FR5
+Adding credential information for Passbook
+
+Once the credential has been issued to a person
+It can be pushed to passbook with the certificated ID
+With calling the POST api
+
+`POST {{server}}/api/user/assessment`
+
+```json5
+{
+  userId: '1246',
+  competencyId: 1,
+  competency: 'NestJs',
+  levelNumber: 1,
+  type: 'CBP',
+  score: '80',
+  certificateId: 'did:ulp:711777e4-5123-41ea-a1cb-9edeb6c38282',
+  dateOfIssuance: '2021-12-01',
+}
+```
+
+For more info about Sunbird RC, please go through the documention of it
+https://docs.sunbirdrc.dev/learn/readme

@@ -4,12 +4,14 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 RUN yarn install
+COPY .env.example ./.env
 
 
 FROM node:18-alpine AS build
 WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
+COPY .env.example ./.env
 RUN npx prisma generate
 
 RUN yarn build
@@ -27,6 +29,7 @@ COPY --from=build /app/public ./public
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
+COPY .env.example ./.env
 
 EXPOSE 3000
 

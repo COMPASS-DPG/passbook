@@ -7,7 +7,7 @@ const fetchData = async (id: string) => {
 
   try {
     const data = await axios.get(
-      `http://compass.samagra.io/credentials/${id}`,
+      `${process.env.NEXT_PUBLIC_CREDENTIAL_URL}/${id}`,
       {
         headers: {
           templateId: 'cloe1mlyx0006s73wq6u08e3g',

@@ -1,7 +1,7 @@
 'use client';
 
 import Head from 'next/head';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import * as React from 'react';
 import { useEffect } from 'react';
 
@@ -21,9 +21,16 @@ import { useEffect } from 'react';
 
 export default function HomePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
+    let userId = localStorage.getItem('userId');
+    const queryId = searchParams.get('userId') || '';
+    if (queryId.trim() !== '') {
+      userId = queryId;
+      localStorage.setItem('userId', queryId);
+    }
+
     // Make the API call using fetch
     fetch('/api/user?userId=' + userId, { cache: 'force-cache' })
       .then((response) => {
