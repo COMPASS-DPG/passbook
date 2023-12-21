@@ -1,6 +1,6 @@
 // components/Accordion.js
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 
 import { outfit } from '@/components/FontFamily';
@@ -28,10 +28,18 @@ const CustomAccordion = ({
   levels = [],
 }: AccordionPropsType) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userId, setUserId] = useState('');
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const userId = localStorage.getItem('userId').toString() || '';
+    setUserId(userId);
+  }, [userId]);
 
   return (
     <div className='mb-2 rounded-md border p-2.5 '>
@@ -93,7 +101,14 @@ const CustomAccordion = ({
         {children}
       </div>
       {levels.length > 0 && (
-        <div className='my-4 flex justify-between gap-4'>
+        <div
+          onClick={() =>
+            window.open(
+              `${process.env.NEXT_PUBLIC_MARKETPLACE_URL}/?userId=${userId}`
+            )
+          }
+          className='my-4 flex justify-between gap-4'
+        >
           <button
             className={`h-9 w-1/2 rounded bg-[#EEF5FF] text-[#385B8B] ${outfit.className} text-sm font-semibold`}
           >

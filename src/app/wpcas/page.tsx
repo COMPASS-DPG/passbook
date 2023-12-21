@@ -16,8 +16,11 @@ import survey from '~/svg/Survey.png';
 
 const Wpcas = () => {
   const [userData, setUserData] = useState('');
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
+    const userId = localStorage.getItem('userId') || '';
+    setUserId(userId);
     const data = localStorage.getItem('userData') || '';
     if (data !== '') {
       setUserData(data);
@@ -52,6 +55,11 @@ const Wpcas = () => {
     if (feedbackCompetency.length > 0) return feedbackCompetency[0];
     return null;
   };
+
+  const redirectToSurvey = () => {
+    window.open(`${process.env.NEXT_PUBLIC_WPCAS_URL}/?userId=${userId}`);
+  };
+
   return (
     <div className='m-3 h-max'>
       <div className='flex space-x-4 p-2'>
@@ -76,7 +84,10 @@ const Wpcas = () => {
             </p>
           </div>
         </div>
-        <div className='right relative w-2/5 cursor-pointer rounded-lg border-blue-900 bg-blue-200'>
+        <div
+          onClick={redirectToSurvey}
+          className='right relative w-2/5 cursor-pointer rounded-lg border-blue-900 bg-blue-200'
+        >
           {/*<div className='absolute -right-1 -top-2 h-5 w-5 rounded-full bg-red-600 text-center font-semibold text-white'>*/}
           {/*  /!*2*!/*/}
           {/*</div>*/}
