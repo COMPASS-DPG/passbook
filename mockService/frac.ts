@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 // Define the URL of the API endpoint
-const apiUrl = 'https://test-compass.free.beeceptor.com/frac/getrole';
+const apiUrl = `${process.env.NEXT_PUBLIC_WPCAS_URL}/api/mockFracService/role/formatedRoles`;
+// const apiUrl = "https://700e47db0561180deed93ac7b21ac2a3.serveo.net/api/mockFracService/role/formatedRoles";
 
 // Create a function to fetch roles data
 const fetchRolesFromFrac = async () => {
