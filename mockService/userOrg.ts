@@ -22,11 +22,9 @@ const fetchUserById = async (userId: string) => {
       },
     };
 
-    const response = await axios.post(
-      'https://compass-dev.tarento.com/api/user/v4/user/search',
-      data,
-      { headers }
-    );
+    const baseUrl = process.env.USER_SERVICE_URL || '';
+
+    const response = await axios.post(baseUrl, data, { headers });
 
     // Check if the request was successful (status code 200)
     if (response.status === 200) {
