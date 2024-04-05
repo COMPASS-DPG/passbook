@@ -54,7 +54,7 @@ const fetchUserById = async (userId: string) => {
             response.data.result?.response?.content[0]?.profileDetails
               ?.professionalDetails[0]?.doj,
           roles:
-            response.data.result?.response?.content[0]?.organizations[0].roles,
+            response.data.result?.response?.content[0]?.organisations[0].roles,
         },
       };
     } else {
