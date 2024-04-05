@@ -49,10 +49,10 @@ const fetchUserById = async (userId: string) => {
           },
           position:
             response.data.result?.response?.content[0]?.profileDetails
-              ?.professionalDetails?.designation,
+              ?.professionalDetails[0]?.designation,
           dateOfJoining:
             response.data.result?.response?.content[0]?.profileDetails
-              ?.professionalDetails?.doj,
+              ?.professionalDetails[0]?.doj,
           roles:
             response.data.result?.response?.content[0]?.organizations[0].roles,
         },
