@@ -82,6 +82,9 @@ export const addRolesAndCompetency = async (
   roles.map((role) => {
     // for counting how many total assessments are needed per roles
     let totalAssignmentCount = 0;
+    if (role && role.competency.length == 0) {
+      return;
+    }
     role.competency.map((competency) => {
       totalAssignmentCount += competency.levels.length;
     });

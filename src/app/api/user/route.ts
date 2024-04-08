@@ -97,6 +97,7 @@ export async function POST(req: NextRequest) {
         // FIXME: have to change with the services
         const rolesAndCompetency: { roles: addRolesSchema[] } =
           await fetchRolesFromFrac();
+
         await addRolesAndCompetency(userId, rolesAndCompetency.roles);
         return NextResponse.json(
           { message: 'user was already there' },
