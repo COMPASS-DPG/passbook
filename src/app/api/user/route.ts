@@ -82,8 +82,14 @@ export async function POST(req: NextRequest) {
       // check if user object is new or just fetch is done
       if (isNew) {
         //adding different values to the new user OBject
-        const { name, team, phone, designation } = await fetchUserById(userId);
-        await addUserInfo(userId, name, team, phone, designation);
+        const { name, rootOrganization, phone } = await fetchUserById(userId);
+        await addUserInfo(
+          userId,
+          name,
+          rootOrganization.team.name,
+          phone,
+          rootOrganization.position
+        );
         // console.log("user info of user has been updated")
         const rolesAndCompetency: { roles: addRolesSchema[] } =
           await fetchRolesFromFrac();
@@ -92,8 +98,14 @@ export async function POST(req: NextRequest) {
       } else {
         //fetching the frac and user service again for the user
         // FIXME: have to change with the services
-        const { name, team, phone, designation } = await fetchUserById(userId);
-        await addUserInfo(userId, name, team, phone, designation);
+        const { name, rootOrganization, phone } = await fetchUserById(userId);
+        await addUserInfo(
+          userId,
+          name,
+          rootOrganization.team.name,
+          phone,
+          rootOrganization.position
+        );
         // FIXME: have to change with the services
         const rolesAndCompetency: { roles: addRolesSchema[] } =
           await fetchRolesFromFrac();
