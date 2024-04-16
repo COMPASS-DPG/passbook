@@ -2,14 +2,14 @@
 import axios from 'axios';
 
 // Define the URL of the API endpoint
-const apiUrl = `${process.env.NEXT_PUBLIC_WPCAS_URL}/api/mockFracService/role/formatedRoles`;
+const apiUrl = `${process.env.NEXT_PUBLIC_WPCAS_URL}/api/mockFracService/role/user/`;
 // const apiUrl = "https://700e47db0561180deed93ac7b21ac2a3.serveo.net/api/mockFracService/role/formatedRoles";
 
 // Create a function to fetch roles data
-const fetchRolesFromFrac = async () => {
+const fetchRolesFromFrac = async (userId: string) => {
   try {
     // Make a GET request to the API
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl + userId);
 
     // Check if the request was successful (status code 200)
     if (response.status === 200) {
