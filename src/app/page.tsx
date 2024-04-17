@@ -31,6 +31,23 @@ export default function HomePage() {
       localStorage.setItem('userId', queryId);
     }
 
+    fetch(process.env.NEXT_PUBLIC_WPCAS_URL + '/api/user-metadata/' + userId, {
+      method: 'POST',
+      cache: 'force-cache',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the API call
+        // eslint-disable-next-line no-console
+        console.error('API call error:', error);
+      });
+
     // Make the API call using fetch
     fetch('/api/user?userId=' + userId, { cache: 'force-cache' })
       .then((response) => {
