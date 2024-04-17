@@ -4,7 +4,6 @@ import {
   addRolesAndCompetency,
   addUser,
   addUserInfo,
-  fetchUser,
 } from '@prismaClient/userDbAction';
 import { addRolesSchema } from '@prismaClient/userType';
 import { NextRequest, NextResponse } from 'next/server';
@@ -14,14 +13,36 @@ export async function GET(req: NextRequest) {
     const userId = req.nextUrl.searchParams.get('userId');
     // Use Prisma to fetch the user based on userId
     if (userId) {
-      const user = await fetchUser(userId);
-      if (user) {
+      const [user, isNew] = await addUser(userId);
+      if (!isNew) {
         return NextResponse.json(user, { status: 200 });
+      } else {
+        try {
+          const { name, rootOrganization, phone } = await fetchUserById(userId);
+          await addUserInfo(
+            userId,
+            name,
+            rootOrganization.team.name,
+            phone,
+            rootOrganization.position
+          );
+          // console.log("user info of user has been updated")
+          const rolesAndCompetency: { roles: addRolesSchema[] } =
+            await fetchRolesFromFrac(userId);
+          await addRolesAndCompetency(userId, rolesAndCompetency.roles);
+        } catch (err) {
+          return NextResponse.json(
+            {
+              error:
+                'User not found, failed to fetch data from userservice/frac',
+            },
+            { status: 404 }
+          );
+        }
       }
-      return NextResponse.json({ error: 'user not found' }, { status: 404 });
     }
     return NextResponse.json(
-      { error: 'Please pass valide userId value' },
+      { error: 'Please pass valid userId value' },
       { status: 404 }
     );
   } catch (error) {
@@ -92,7 +113,7 @@ export async function POST(req: NextRequest) {
         );
         // console.log("user info of user has been updated")
         const rolesAndCompetency: { roles: addRolesSchema[] } =
-          await fetchRolesFromFrac();
+          await fetchRolesFromFrac(userId);
         await addRolesAndCompetency(userId, rolesAndCompetency.roles);
         // console.log("frac data of user has been updated")
       } else {
@@ -108,7 +129,7 @@ export async function POST(req: NextRequest) {
         );
         // FIXME: have to change with the services
         const rolesAndCompetency: { roles: addRolesSchema[] } =
-          await fetchRolesFromFrac();
+          await fetchRolesFromFrac(userId);
 
         await addRolesAndCompetency(userId, rolesAndCompetency.roles);
         return NextResponse.json(
