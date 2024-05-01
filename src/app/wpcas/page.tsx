@@ -57,7 +57,9 @@ const Wpcas = () => {
   };
 
   const redirectToSurvey = () => {
-    window.open(`${process.env.NEXT_PUBLIC_WPCAS_URL}/?userId=${userId}`);
+    window.open(
+      `${process.env.NEXT_PUBLIC_WPCAS_SURVEY_URL}/?userId=${userId}`
+    );
   };
 
   return (
