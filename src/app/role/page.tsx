@@ -52,6 +52,7 @@ const Page = () => {
                 : 'In Progress'
               : 'Yet to be started',
           description: role.description,
+          activities: role.activities ?? [],
           competencies: resultComptency,
         };
       });

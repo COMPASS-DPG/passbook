@@ -92,6 +92,7 @@ export const addRolesAndCompetency = async (
       id: role.id,
       name: role.name,
       description: role.description,
+      activities: role.activities,
       competencyIds: role.competency.map((competency) => competency.id),
       totalAssessment: totalAssignmentCount,
       completedAssessment: 0,

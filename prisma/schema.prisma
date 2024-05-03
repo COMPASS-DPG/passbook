@@ -10,52 +10,50 @@ datasource db {
   url      = env("MONGO_DB_URL")
 }
 
-
-
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @unique
-  name String
-  team String
-  phone String
-  designation String
-  roles Role[]
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String       @unique
+  name         String
+  team         String
+  phone        String
+  designation  String
+  roles        Role[]
   competencies Competency[]
-  assessments Assessment[]
-  feedbacks Feedback[]
-  created DateTime @default(now())
-  updated DateTime @updatedAt
+  assessments  Assessment[]
+  feedbacks    Feedback[]
+  created      DateTime     @default(now())
+  updated      DateTime     @updatedAt
 }
 
 type Role {
-  id Int
-  name String
-  description String
-  competencyIds Int[]
-  totalAssessment Int
+  id                  Int
+  name                String
+  description         String
+  competencyIds       Int[]
+  activities          String[] @default([])
+  totalAssessment     Int
   completedAssessment Int
 }
 
 type Competency {
-  id Int
-  name String
+  id     Int
+  name   String
   levels Level[]
 }
 
 type Level {
-  id Int
+  id          Int
   levelNumber Int
-  name String
+  name        String
 }
 
-
 type Assessment {
-  competencyId Int
-  competency String
-  levelNumber Int
+  competencyId   Int
+  competency     String
+  levelNumber    Int
   assessmentType AssessmentType
-  score String?
-  certificateId String
+  score          String?
+  certificateId  String
   dateOfIssuance String
 }
 
@@ -67,21 +65,20 @@ enum AssessmentType {
 
 type Feedback {
   dateOfSurveyScore String
-  certificateId String
-  overallScore Int
-  competencies feedbackCompetency[]
+  certificateId     String
+  overallScore      Int
+  competencies      feedbackCompetency[]
 }
 
 type feedbackCompetency {
-  id Int
-  name String
+  id     Int
+  name   String
   levels feedbackLevel[]
 }
 
 type feedbackLevel {
-  id Int?
-  name String
+  id          Int?
+  name        String
   levelNumber Int
-  score String
+  score       String
 }
-
