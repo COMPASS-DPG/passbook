@@ -21,6 +21,7 @@ export type RoleDataType = {
   name: string;
   status: string;
   description: string;
+  activities: string[];
   competencies: CompetencyType[];
 };
 
