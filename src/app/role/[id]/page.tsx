@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { RiVerifiedBadgeFill } from 'react-icons/ri';
 
 import BackButtonNav from '@/components/competency/BackButtonNav';
@@ -16,6 +16,7 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
     name: '',
     status: '',
     description: '',
+    activities: [],
     competencies: [],
   };
   if (rolesData !== null) {
@@ -25,6 +26,15 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
     );
     data = rolesList[0];
   }
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Function to toggle the expansion state
+  const toggleExpansion = () => {
+    setIsExpanded(!isExpanded);
+  };
+  const displayedActivities = isExpanded
+    ? data.activities
+    : data.activities.slice(0, 2);
 
   return (
     <div className={`${outfit.className} w-full`}>
@@ -48,6 +58,36 @@ const RoleDetails = ({ params }: { params: { id: string } }) => {
             <p key={`${data.id}-role`} className='pb-2.5 text-sm font-normal'>
               {data.description}
             </p>
+          )}
+          {data?.activities.length > 0 && (
+            <div key={`${data.id}-role`} className='pb-2.5 text-sm font-normal'>
+              <p>Activities pertaining to this role:</p>
+              <ul className='pl-4'>
+                {displayedActivities.map((activity, index) => (
+                  <li key={`${data.id}-activity-${index}`} className='ml-2'>
+                    {activity}
+                  </li>
+                ))}
+              </ul>
+              {/* Show "more" button if there are more than two activities and the list is not expanded */}
+              {data.activities.length > 2 && !isExpanded && (
+                <button
+                  className='ml-6 text-blue-500'
+                  onClick={toggleExpansion}
+                >
+                  More
+                </button>
+              )}
+              {/* Show "less" button if the list is expanded */}
+              {isExpanded && (
+                <button
+                  className='ml-6 text-blue-500'
+                  onClick={toggleExpansion}
+                >
+                  Less
+                </button>
+              )}
+            </div>
           )}
         </div>
         <div>

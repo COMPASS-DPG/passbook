@@ -11,6 +11,7 @@ export type addRolesSchema = {
   id: number;
   name: string;
   description: string;
+  activities: string[];
   competency: CompetencyDBSchema[];
 };
 
@@ -49,6 +50,7 @@ export type RoleDBSchema = {
   name: string;
   description: string;
   competencyIds: number[];
+  activities: string[];
   totalAssessment: number;
   completedAssessment: number;
 };
