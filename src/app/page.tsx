@@ -48,6 +48,36 @@ export default function HomePage() {
         console.error('API call error:', error);
       });
 
+    const currentDate = new Date();
+    const isoString = currentDate.toISOString();
+    const data = {
+      data: {
+        event: {
+          userId: userId,
+          loginDate: isoString,
+        },
+      },
+    };
+
+    fetch(
+      process.env.NEXT_PUBLIC_OBSRV_URL + '/data/v1/in/event-passbook-login',
+      {
+        method: 'POST',
+        cache: 'force-cache',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error('Error hitting event-passbook-login:', error);
+      });
+
     // Make the API call using fetch
     fetch('/api/user?userId=' + userId, { cache: 'force-cache' })
       .then((response) => {
