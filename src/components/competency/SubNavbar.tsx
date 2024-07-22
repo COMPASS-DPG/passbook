@@ -1,9 +1,9 @@
 'use client';
 
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
 import { BsShare } from 'react-icons/bs';
 import { LuDownload } from 'react-icons/lu';
 
@@ -13,6 +13,7 @@ import ErrorModal from '@/components/errorScreen/ErrorModal';
 import { outfit } from '@/components/FontFamily';
 import PassbookPdfDownload from '@/components/Pdf/PassbookPdfDownload';
 import usePDFData from '@/components/Pdf/usePdfData';
+import { passbookActivityEvent } from '@mock/events';
 
 const SubNavbar = () => {
   // to show pdf download error
@@ -24,6 +25,12 @@ const SubNavbar = () => {
 
   const handleDownload = async () => {
     try {
+      if (userId) {
+        await passbookActivityEvent({
+          userId: userId,
+          activity: "DOWNLOAD"
+        });
+      }
       const blob = await pdf(
         <PassbookPdfDownload
           pdfFeedback={pdfFeedback}
@@ -42,6 +49,16 @@ const SubNavbar = () => {
     }
   };
 
+  const handleShare = async () => {
+    if (userId) {
+      await passbookActivityEvent({
+        userId: userId,
+        activity: "SHARE"
+      });
+    }
+    router.push('/pdf');
+  }
+
   return (
     <div className={`sticky top-0 z-10 bg-white  ${outfit.className}`}>
       {/* modal to show pdf download error */}
@@ -57,7 +74,7 @@ const SubNavbar = () => {
           <button
             className='flex h-10 w-10 items-center justify-center 
             rounded-md  bg-[#385B8B]'
-            onClick={() => router.push('/pdf')}
+            onClick={handleShare}
           >
             <BsShare size={24} />
           </button>
